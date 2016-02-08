@@ -1,6 +1,5 @@
 package com.example.clock;
 
-import java.util.concurrent.TimeUnit;
 
 public class Timer {
 	
@@ -16,7 +15,7 @@ public class Timer {
 	
 	protected int num_times_display =0;
 	
-	protected boolean mode12hour = Settings.mode12;
+	protected boolean mode12hour =false;
 	
 	
 	
@@ -147,4 +146,3 @@ public class Timer {
 	
 	
 }
-	
