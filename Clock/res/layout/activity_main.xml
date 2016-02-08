@@ -18,9 +18,47 @@
 	        android:text = "@string/timer"
 	        android:gravity="center"
         ></TextView>
-     
-       		
 
-    
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerHour"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="86dp"
+        android:spinnerMode="dropdown" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerMinutes"
+        android:spinnerMode="dropdown"
+        android:layout_alignTop="@+id/spinnerHour"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="94dp"
+        android:layout_marginStart="94dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerSeconds"
+        android:spinnerMode="dropdown"
+        android:layout_alignTop="@+id/spinnerHour"
+        android:layout_alignLeft="@+id/spinnerMinutes"
+        android:layout_alignStart="@+id/spinnerMinutes"
+        android:layout_marginLeft="98dp"
+        android:layout_marginStart="98dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerMode"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/spinnerMinutes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

@@ -6,9 +6,13 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-
+import java.lang.reflect.Array;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,11 +21,15 @@ public class MainActivity extends AppCompatActivity {
 	
 	
 	public TextView showtime;
-	
+
+	public Spinner changehour;
+	public Spinner changeminutes;
+	public Spinner changeseconds;
+	public Spinner changemode;
+
 	protected Timer my_time = new Timer(45,59,12);
-	
-	
-	
+
+
 	
 	protected Handler handler;
 	
@@ -39,8 +47,22 @@ public class MainActivity extends AppCompatActivity {
 			
 		}
 	}
-	
-	
+
+	public class SpinnerItemSelectedListener implements AdapterView.OnItemSelectedListener
+	{
+
+		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
+		{
+
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg) {
+
+		}
+	}
+
+
 	/*
 	 * Constructor the stores the Class_Name for debugging purposes 
 	 */
@@ -60,17 +82,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         
         Log.d(class_name, "Creating Main Activity");
-        
-        
-        showtime = (TextView) findViewById(R.id.timer);
-        
- 
-        
-      
-		
-        
 
-    }
+
+		Integer[] hours = new Integer[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
+		ArrayAdapter<Integer> hourAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item,hours);
+
+
+		//this is probably retarded
+		Integer[] minutes = new Integer[60];
+		for(int i = 0; i < 60; i++)
+		{
+			minutes[i] = i;
+		}
+		ArrayAdapter<Integer> minuteAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, minutes);
+
+		String[] mode = {"AM","PM"};
+		ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, mode);
+
+
+		showtime = (TextView) findViewById(R.id.timer);
+
+        changehour = (Spinner) findViewById(R.id.spinnerHour);
+		changehour.setAdapter(hourAdapter);
+		changehour.setOnItemSelectedListener(new SpinnerItemSelectedListener());
+
+		changeminutes = (Spinner) findViewById(R.id.spinnerMinutes);
+		changeminutes.setAdapter(minuteAdapter);
+
+
+		changeseconds = (Spinner) findViewById(R.id.spinnerSeconds);
+		changeseconds.setAdapter(minuteAdapter);
+
+		changemode = (Spinner) findViewById(R.id.spinnerMode);
+		changemode.setAdapter(modeAdapter);
+
+	}
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
 	protected void onStart() {
 		
@@ -162,7 +210,5 @@ public class MainActivity extends AppCompatActivity {
 		Log.d(class_name, "Destroying Main Activity ");
 		
 	}
-    
-    
-		
+
 }
