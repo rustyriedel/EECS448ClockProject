@@ -86,7 +86,7 @@ public class Timer {
 					
 					else if (previous_hour ==23) {
 						
-						next_hour = 1;
+						next_hour = 0;
 					}
 				}
 					
