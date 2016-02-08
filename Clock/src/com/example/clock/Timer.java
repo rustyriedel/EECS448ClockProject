@@ -40,7 +40,6 @@ public class Timer {
 		
 		int[] my_time_array = new int[3];
 		
-		
 		int next_seconds = previous_seconds;
 		
 		int next_minutes = previous_minutes;
