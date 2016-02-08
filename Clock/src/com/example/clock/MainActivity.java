@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.RadioButton;
 
 import java.lang.reflect.Array;
 
@@ -71,8 +72,23 @@ public class MainActivity extends AppCompatActivity {
 		class_name = getClass().getName();
 		
 	}
-	
-	
+
+	public void onRadioButtonClicked(View view) {
+		// Is the button now checked?
+		boolean checked = ((RadioButton) view).isChecked();
+
+		// Check which radio button was clicked
+		switch(view.getId()) {
+			case R.id.radio_12:
+				if (checked)
+
+					break;
+			case R.id.radio_24:
+				if (checked)
+
+					break;
+		}
+	}
 
 	
     @Override
