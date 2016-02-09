@@ -1,6 +1,7 @@
 package com.example.clock;
 
 import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,17 +24,22 @@ public class MainActivity extends AppCompatActivity {
 	
 	
 	public TextView showtime;
+	
+	public String hours;
+	public String minutes;
+	public String seconds;
+	public String mode;
 
 	public Spinner changehour;
 	public Spinner changeminutes;
 	public Spinner changeseconds;
 	public Spinner changemode;
 
-	protected Timer my_time = new Timer(45,59,12);
+	protected Timer my_time;
 
 
 	
-	protected Handler handler;
+	protected Handler handler =null;
 	
 	protected updateTimer my_update;
 	
@@ -48,21 +55,65 @@ public class MainActivity extends AppCompatActivity {
 			
 		}
 	}
+	
 
-	public class SpinnerItemSelectedListener implements AdapterView.OnItemSelectedListener
-	{
-
-		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
-		{
-
+	public void callHandler() {
+		
+		handler = new Handler();
+		
+    	my_update = new updateTimer();
+	
+    	handler.postDelayed(my_update,950);
+	}
+	
+	public void removeHandler() {
+		
+		if(handler == null) {
+			
 		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> arg) {
-
+		
+		else {
+			handler.removeCallbacks(my_update);
+			handler =null;
 		}
 	}
 
+	public class SpinnerActivity extends Activity implements OnItemSelectedListener {
+	   
+	    public void onItemSelected(AdapterView<?> parent, View view, 
+	            int pos, long id) {
+	        // An item was selected. You can retrieve the selected item using
+	    	
+	    		removeHandler();
+	        	
+	        	switch(parent.getId()){
+	            case R.id.spinnerHour:
+	            	hours = parent.getItemAtPosition(pos).toString();
+	                break;
+	            case R.id.spinnerMinutes:
+	            	minutes = parent.getItemAtPosition(pos).toString();
+	                break; 
+	            case R.id.spinnerSeconds:
+	            	seconds = parent.getItemAtPosition(pos).toString();
+	                break;
+	            case R.id.spinnerMode:
+	            	mode = parent.getItemAtPosition(pos).toString();
+	                break;
+	        }
+	        
+	        	if(hours!=null & minutes!=null & seconds!=null) {
+	        	
+	        		my_time = new Timer(Integer.parseInt(hours),Integer.parseInt(minutes),Integer.parseInt(seconds));
+	        	}
+	        	
+	  
+	        	callHandler();
+	    }
+
+	    public void onNothingSelected(AdapterView<?> parent) {
+	        // Another interface callback
+	    }
+	}
 
 	/*
 	 * Constructor the stores the Class_Name for debugging purposes 
@@ -120,17 +171,19 @@ public class MainActivity extends AppCompatActivity {
 
         changehour = (Spinner) findViewById(R.id.spinnerHour);
 		changehour.setAdapter(hourAdapter);
-		changehour.setOnItemSelectedListener(new SpinnerItemSelectedListener());
+		changehour.setOnItemSelectedListener(new SpinnerActivity());
 
 		changeminutes = (Spinner) findViewById(R.id.spinnerMinutes);
 		changeminutes.setAdapter(minuteAdapter);
-
+		changeminutes.setOnItemSelectedListener(new SpinnerActivity());
 
 		changeseconds = (Spinner) findViewById(R.id.spinnerSeconds);
 		changeseconds.setAdapter(minuteAdapter);
+		changeseconds.setOnItemSelectedListener(new SpinnerActivity());
 
 		changemode = (Spinner) findViewById(R.id.spinnerMode);
 		changemode.setAdapter(modeAdapter);
+		changemode.setOnItemSelectedListener(new SpinnerActivity());
 
 	}
 
@@ -164,12 +217,6 @@ public class MainActivity extends AppCompatActivity {
 		
 		Log.d(class_name, "Starting Main Activity");
 		
-		handler = new Handler();
-		
-		my_update = new updateTimer();
-		
-		handler.postDelayed(my_update,950);
-		
 	
     }
     
@@ -192,12 +239,6 @@ public class MainActivity extends AppCompatActivity {
 		super.onPause(); // Call parent code 
 		
 		Log.d(class_name, "Pausing Main Activity");
-		
-		handler = new Handler();
-		
-		my_update = new updateTimer();
-		
-		handler.postDelayed(my_update,950);
 		
 		
 		

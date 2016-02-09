@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Clock</string>
+    <string name="timer">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button12">12 Hour Mode</string>
+    <string name="button24">24 Hour Mode</string>
+
+
+</resources>
