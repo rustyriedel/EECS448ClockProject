@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 			showtime.setText(my_time.display());
 			
 			if(handler != null) {
-				handler.postDelayed(this, 950);
+				handler.postDelayed(this, 1);
 				hourPicker.setValue(my_time.getHour());
 				minutePicker.setValue(my_time.getMinute());
 				secondPicker.setValue(my_time.getSecond());
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 		
     	my_update = new updateTimer();
 	
-    	handler.postDelayed(my_update,950);
+    	handler.postDelayed(my_update,1);
 	}
 	
 	public void removeHandler() {
@@ -87,42 +87,6 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
-	public class SpinnerActivity extends Activity implements OnItemSelectedListener {
-	   
-	    public void onItemSelected(AdapterView<?> parent, View view, 
-	            int pos, long id) {
-	        // An item was selected. You can retrieve the selected item using
-	    	
-	    		removeHandler();
-	        	
-	        	switch(parent.getId()){
-	            case R.id.spinnerHour:
-	            	hours = parent.getItemAtPosition(pos).toString();
-	                break;
-	            case R.id.spinnerMinutes:
-	            	minutes = parent.getItemAtPosition(pos).toString();
-	                break; 
-	            case R.id.spinnerSeconds:
-	            	seconds = parent.getItemAtPosition(pos).toString();
-	                break;
-	            case R.id.spinnerMode:
-	            	mode = parent.getItemAtPosition(pos).toString();
-	                break;
-	        }
-	        
-	        	if(hours!=null & minutes!=null & seconds!=null) {
-	        	
-	        		my_time = new Timer(Integer.parseInt(hours),Integer.parseInt(minutes),Integer.parseInt(seconds));
-	        	}
-	        	
-	  
-	        	callHandler();
-	    }
-
-	    public void onNothingSelected(AdapterView<?> parent) {
-	        // Another interface callback
-	    }
-	}
 
 	/*
 	 * Constructor the stores the Class_Name for debugging purposes 
@@ -161,71 +125,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-		Integer[] hours = new Integer[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
-		ArrayAdapter<Integer> hourAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item,hours);
-
-
-		//this is probably retarded
-		Integer[] minutes = new Integer[60];
-		for(int i = 0; i < 60; i++)
-		{
-			minutes[i] = i;
-		}
-		ArrayAdapter<Integer> minuteAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, minutes);
-
-		String[] mode = {"AM","PM"};
-		ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, mode);
-
 
 		showtime = (TextView) findViewById(R.id.timer);
 
-		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
-		hourPicker.setMaxValue(23);
+		my_time = new Timer(0,0,12);
 
-		minutePicker = (NumberPicker) findViewById(R.id.numberPickerMin);
-		minutePicker.setMaxValue(59);
-
-		secondPicker = (NumberPicker) findViewById(R.id.numberPickerSec);
-		secondPicker.setMaxValue(59);
-
-		hourPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-			@Override
-			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				my_time.setHour(newVal);
-			}
-		});
-
-		minutePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-			@Override
-			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				my_time.setMinute(newVal);
-			}
-		});
-
-		secondPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-			@Override
-			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				my_time.setSecond(newVal);
-			}
-		});
-
-
-
-		changehour = (Spinner) findViewById(R.id.spinnerHour);
-		changehour.setAdapter(hourAdapter);
-		changehour.setOnItemSelectedListener(new SpinnerActivity());
-
-		changeminutes = (Spinner) findViewById(R.id.spinnerMinutes);
-		changeminutes.setAdapter(minuteAdapter);
-		changeminutes.setOnItemSelectedListener(new SpinnerActivity());
-
-		changeseconds = (Spinner) findViewById(R.id.spinnerSeconds);
-		changeseconds.setAdapter(minuteAdapter);
-		changeseconds.setOnItemSelectedListener(new SpinnerActivity());
-
-		changemode = (Spinner) findViewById(R.id.spinnerMode);
-		changemode.setAdapter(modeAdapter);
-		changemode.setOnItemSelectedListener(new SpinnerActivity());
 
 	}
 
@@ -254,9 +158,50 @@ public class MainActivity extends AppCompatActivity {
 	protected void onStart() {
 		
 		
-		super.onStart(); // Make sure the code in the parent class is used 
-	
-		
+		super.onStart(); // Make sure the code in the parent class is used
+
+		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
+		hourPicker.setMaxValue(23);
+
+		minutePicker = (NumberPicker) findViewById(R.id.numberPickerMin);
+		minutePicker.setMaxValue(59);
+
+		secondPicker = (NumberPicker) findViewById(R.id.numberPickerSec);
+		secondPicker.setMaxValue(59);
+
+		hourPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				removeHandler();
+
+					my_time.setHour(newVal);
+
+				callHandler();
+
+			}
+		});
+
+		minutePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				removeHandler();
+
+					my_time.setMinute(newVal);
+
+				callHandler();
+			}
+		});
+
+		secondPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				removeHandler();
+				my_time.setSecond(newVal);
+				callHandler();
+			}
+		});
+
+
 		Log.d(class_name, "Starting Main Activity");
 		
 	

@@ -32,64 +32,16 @@
     		android:layout_height="match_parent" 
 	        android:text = "@string/timer"
 	        android:gravity="center"
-        ></TextView>
+            android:layout_above="@+id/numberPickerMin"
+            android:layout_alignRight="@+id/numberPickerSec"
+            android:layout_alignEnd="@+id/numberPickerSec"></TextView>
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerHour"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="86dp"
-        android:spinnerMode="dropdown" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerMinutes"
-        android:spinnerMode="dropdown"
-        android:layout_alignTop="@+id/spinnerHour"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="94dp"
-        android:layout_marginStart="94dp" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerSeconds"
-        android:spinnerMode="dropdown"
-        android:layout_alignTop="@+id/spinnerHour"
-        android:layout_alignLeft="@+id/spinnerMinutes"
-        android:layout_alignStart="@+id/spinnerMinutes"
-        android:layout_marginLeft="98dp"
-        android:layout_marginStart="98dp" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/spinnerMode"
-        android:spinnerMode="dropdown"
-        android:layout_below="@+id/spinnerMinutes"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/numberPickerSec"
-        android:layout_below="@+id/radioGroup"
-        android:layout_alignRight="@+id/timer"
-        android:layout_alignEnd="@+id/timer"
-        android:layout_marginRight="31dp"
-        android:layout_marginEnd="31dp" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numberPickerMin"
-        android:layout_alignTop="@+id/numberPickerSec"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
     <NumberPicker
@@ -99,6 +51,14 @@
         android:layout_alignTop="@+id/numberPickerMin"
         android:layout_toLeftOf="@+id/spinnerSeconds"
         android:layout_toStartOf="@+id/spinnerSeconds" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerSec"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
