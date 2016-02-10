@@ -22,6 +22,8 @@ import java.lang.reflect.Array;
 public class MainActivity extends AppCompatActivity {
 	
 	private String class_name;
+
+	public static boolean my_bool;
 	
 	
 	public TextView showtime;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 			showtime.setText(my_time.display());
 			
 			if(handler != null) {
-				handler.postDelayed(this, 1);
+				handler.postDelayed(this, 1000);
 				hourPicker.setValue(my_time.getHour());
 				minutePicker.setValue(my_time.getMinute());
 				secondPicker.setValue(my_time.getSecond());
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 		
     	my_update = new updateTimer();
 	
-    	handler.postDelayed(my_update,1);
+    	handler.postDelayed(my_update,1000);
 	}
 	
 	public void removeHandler() {
@@ -100,18 +102,30 @@ public class MainActivity extends AppCompatActivity {
 	public void onRadioButtonClicked(View view) {
 		// Is the button now checked?
 		boolean checked = ((RadioButton) view).isChecked();
-
+		removeHandler();
 		// Check which radio button was clicked
 		switch(view.getId()) {
+
 			case R.id.radio_12:
+
+				hourPicker.setMaxValue(12);
 				if (checked)
+					if(my_time.getHour() >= 13) {
+						my_time.setHour(my_time.getHour()-12);
+						my_time.setAMPM("PM");
+					}
+					my_time.setMode(true);
 
 					break;
 			case R.id.radio_24:
+				hourPicker.setMaxValue(23);
 				if (checked)
-
+					my_time.setMode(false);
 					break;
+
+
 		}
+		callHandler();
 	}
 
 	
@@ -129,6 +143,48 @@ public class MainActivity extends AppCompatActivity {
 		showtime = (TextView) findViewById(R.id.timer);
 
 		my_time = new Timer(0,0,12);
+
+		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
+		hourPicker.setMaxValue(23);
+
+		minutePicker = (NumberPicker) findViewById(R.id.numberPickerMin);
+		minutePicker.setMaxValue(59);
+
+		secondPicker = (NumberPicker) findViewById(R.id.numberPickerSec);
+		secondPicker.setMaxValue(59);
+
+		hourPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				removeHandler();
+
+				my_time.setHour(newVal);
+
+				callHandler();
+
+			}
+		});
+
+		minutePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				removeHandler();
+
+				my_time.setMinute(newVal);
+
+				callHandler();
+			}
+		});
+
+		secondPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				removeHandler();
+				my_time.setSecond(newVal);
+				callHandler();
+			}
+		});
+
 
 
 	}
@@ -160,46 +216,6 @@ public class MainActivity extends AppCompatActivity {
 		
 		super.onStart(); // Make sure the code in the parent class is used
 
-		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
-		hourPicker.setMaxValue(23);
-
-		minutePicker = (NumberPicker) findViewById(R.id.numberPickerMin);
-		minutePicker.setMaxValue(59);
-
-		secondPicker = (NumberPicker) findViewById(R.id.numberPickerSec);
-		secondPicker.setMaxValue(59);
-
-		hourPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-			@Override
-			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				removeHandler();
-
-					my_time.setHour(newVal);
-
-				callHandler();
-
-			}
-		});
-
-		minutePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-			@Override
-			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				removeHandler();
-
-					my_time.setMinute(newVal);
-
-				callHandler();
-			}
-		});
-
-		secondPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-			@Override
-			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				removeHandler();
-				my_time.setSecond(newVal);
-				callHandler();
-			}
-		});
 
 
 		Log.d(class_name, "Starting Main Activity");
@@ -250,6 +266,8 @@ public class MainActivity extends AppCompatActivity {
 		
 		
 		super.onDestroy();
+
+		removeHandler();
 		
 		Log.d(class_name, "Destroying Main Activity ");
 		

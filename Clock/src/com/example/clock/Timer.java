@@ -16,6 +16,9 @@ public class Timer {
 	protected int num_times_display =0;
 	
 	protected boolean mode12hour =false;
+
+	protected String am_pm = "AM";
+
 	
 	
 	
@@ -65,13 +68,29 @@ public class Timer {
 				if(mode12hour == true) {
 					
 					if(previous_hour!=12) {
-						
+
+						if (previous_hour ==11) {
+							if(am_pm =="AM") {
+
+								am_pm = "PM";
+							}
+
+							else if (am_pm == "PM") {
+								am_pm = "AM";
+							}
 						next_hour = previous_hour +1;
 					}
 					
 					else if (previous_hour ==12) {
+
+
+
 						
 						next_hour = 1;
+					}
+
+
+
 					}
 					
 				}
@@ -120,6 +139,18 @@ public class Timer {
 	{
 		return current_second;
 	}
+	public boolean getMode() {
+
+		return(mode12hour);
+	}
+
+
+
+	public void setMode(boolean mode)
+	{
+		mode12hour = mode;
+	}
+
 
 	//Setters
 	public void setHour(int hour)
@@ -137,6 +168,10 @@ public class Timer {
 		current_second = sec;
 	}
 
+	public void setAMPM(String x) {
+		am_pm = x;
+	}
+
 
 
 	public String display()  {
@@ -146,24 +181,44 @@ public class Timer {
 		
 		
 		if(num_times_display == 0) {
+
+			if(mode12hour == true) {
+				display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second) +" " + am_pm;
+				num_times_display =1;
+			}
+
+			else {
+
+				display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
+				num_times_display =1;
+
+			}
 			
-			display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
-			num_times_display =1;
+
 			
 		}
 		
 		else {
 			
 			int[] my_time_array = new int[3];
-			
+
 			my_time_array = updateTime(current_second,current_minute,current_hour);
-			
+
 			current_second = my_time_array[0];
 			current_minute = my_time_array[1];
 			current_hour = my_time_array[2];
-			
-			display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
-			
+
+			if(mode12hour==true) {
+				display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second) +" " + am_pm;
+
+			}
+
+			else {
+				display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
+
+			}
+
+
 		}
 		
 		
