@@ -188,7 +188,30 @@ public class MainActivity extends AppCompatActivity {
 		secondPicker = (NumberPicker) findViewById(R.id.numberPickerSec);
 		secondPicker.setMaxValue(59);
 
-        changehour = (Spinner) findViewById(R.id.spinnerHour);
+		hourPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				my_time.setHour(newVal);
+			}
+		});
+
+		minutePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				my_time.setMinute(newVal);
+			}
+		});
+
+		secondPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				my_time.setSecond(newVal);
+			}
+		});
+
+
+
+		changehour = (Spinner) findViewById(R.id.spinnerHour);
 		changehour.setAdapter(hourAdapter);
 		changehour.setOnItemSelectedListener(new SpinnerActivity());
 

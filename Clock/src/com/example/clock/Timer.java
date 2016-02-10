@@ -121,6 +121,24 @@ public class Timer {
 		return current_second;
 	}
 
+	//Setters
+	public void setHour(int hour)
+	{
+		current_hour = hour;
+	}
+
+	public void setMinute(int min)
+	{
+		current_minute = min;
+	}
+
+	public void setSecond(int sec)
+	{
+		current_second = sec;
+	}
+
+
+
 	public String display()  {
 		
 		String display;
