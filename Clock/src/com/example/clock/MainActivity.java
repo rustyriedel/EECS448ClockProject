@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.RadioButton;
@@ -35,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
 	public Spinner changeseconds;
 	public Spinner changemode;
 
+	public NumberPicker hourPicker;
+	public NumberPicker minutePicker;
+	public NumberPicker secondPicker;
+
+
 	protected Timer my_time;
 
 
@@ -51,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
 			
 			if(handler != null) {
 				handler.postDelayed(this, 950);
+				hourPicker.setValue(my_time.getHour());
+				minutePicker.setValue(my_time.getMinute());
+				secondPicker.setValue(my_time.getSecond());
 			}
 			
 		}
@@ -144,11 +153,12 @@ public class MainActivity extends AppCompatActivity {
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    	
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
         Log.d(class_name, "Creating Main Activity");
+
 
 
 		Integer[] hours = new Integer[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
@@ -168,6 +178,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 		showtime = (TextView) findViewById(R.id.timer);
+
+		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
+		hourPicker.setMaxValue(23);
+
+		minutePicker = (NumberPicker) findViewById(R.id.numberPickerMin);
+		minutePicker.setMaxValue(59);
+
+		secondPicker = (NumberPicker) findViewById(R.id.numberPickerSec);
+		secondPicker.setMaxValue(59);
 
         changehour = (Spinner) findViewById(R.id.spinnerHour);
 		changehour.setAdapter(hourAdapter);

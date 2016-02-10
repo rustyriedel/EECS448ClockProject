@@ -12,7 +12,8 @@
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/radioGroup">
         <RadioButton android:id="@+id/radio_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,13 +67,38 @@
         android:layout_marginStart="98dp" />
 
     <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/spinnerMode"
         android:spinnerMode="dropdown"
         android:layout_below="@+id/spinnerMinutes"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerSec"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignRight="@+id/timer"
+        android:layout_alignEnd="@+id/timer"
+        android:layout_marginRight="31dp"
+        android:layout_marginEnd="31dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerMin"
+        android:layout_alignTop="@+id/numberPickerSec"
+        android:layout_centerHorizontal="true" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerHour"
+        android:layout_alignTop="@+id/numberPickerMin"
+        android:layout_toLeftOf="@+id/spinnerSeconds"
+        android:layout_toStartOf="@+id/spinnerSeconds" />
 
 
 </RelativeLayout>

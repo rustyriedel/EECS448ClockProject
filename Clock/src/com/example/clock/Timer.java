@@ -104,7 +104,23 @@ public class Timer {
 	
 	}
 
-	
+	//Getters
+
+	public int getHour()
+	{
+		return current_hour;
+	}
+
+	public int getMinute()
+	{
+		return current_minute;
+	}
+
+	public int getSecond()
+	{
+		return current_second;
+	}
+
 	public String display()  {
 		
 		String display;
