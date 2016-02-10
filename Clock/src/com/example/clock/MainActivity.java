@@ -109,10 +109,19 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.radio_12:
 
 				hourPicker.setMaxValue(12);
+				hourPicker.setMinValue(1);
 				if (checked)
 					if(my_time.getHour() >= 13) {
 						my_time.setHour(my_time.getHour()-12);
 						my_time.setAMPM("PM");
+					}
+
+					else {
+						if(my_time.getHour()==0) {
+							my_time.setHour(12);
+						}
+
+						my_time.setAMPM("AM");
 					}
 					my_time.setMode(true);
 
@@ -120,6 +129,25 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.radio_24:
 				hourPicker.setMaxValue(23);
 				if (checked)
+					if(my_time.getAMPM()=="PM") {
+						if(my_time.getHour() ==12) {
+							my_time.setHour(12);
+						}
+						else {
+							my_time.setHour(my_time.getHour() + 12);
+
+						}
+
+						my_time.setAMPM("PM");
+
+					}
+					if(my_time.getAMPM()=="AM") {
+						if(my_time.getHour() == 12) {
+							my_time.setHour(0);
+						}
+
+						my_time.setAMPM("AM");
+					}
 					my_time.setMode(false);
 					break;
 

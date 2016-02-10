@@ -125,6 +125,10 @@ public class Timer {
 
 	//Getters
 
+	public String getAMPM() {
+		return(am_pm);
+	}
+
 	public int getHour()
 	{
 		return current_hour;
