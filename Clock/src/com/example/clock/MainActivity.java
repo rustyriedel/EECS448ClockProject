@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 					break;
 			case R.id.radio_24:
+				hourPicker.setMinValue(0);
 				hourPicker.setMaxValue(23);
 				if (checked)
 					if(my_time.getAMPM()=="PM") {
