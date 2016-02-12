@@ -14,10 +14,13 @@ import android.view.MenuItem; // Default import for android menus
 
 import android.view.View; // Class that is the base block for the user interface
 
+import android.widget.ImageButton;
 import android.widget.NumberPicker; // Class used for swipable number pickers
 import android.widget.RadioGroup;
 import android.widget.TextView; // Class used for text view of timer
 import android.widget.RadioButton; // Class used for radio buttons
+
+import java.util.Calendar;
 
 
 /**
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
 	private RadioGroup am_pm = null; // Radio group to select am or pm
 	private RadioGroup  twelve_twentyfour = null; // Radio group to select time mode
+
+	private Calendar currentCellInternalTime;
+
+	private ImageButton syncButton;
 
 	private Timer my_time = null; // Decleration of a variable with type Timer (see Timer class)
 
@@ -162,6 +169,33 @@ public class MainActivity extends AppCompatActivity {
 				}
 				break;
 		}
+	}
+
+	public void onSyncButtonClicked()
+	{
+		int hourShift = 0;
+		currentCellInternalTime = Calendar.getInstance();
+		if(my_time.getMode() == true)
+		{
+			if(currentCellInternalTime.getTime().getHours() == 12){
+				my_time.setAMPM("PM");
+			}
+			else if(currentCellInternalTime.getTime().getHours() >= 13){
+				hourShift = 12;
+				my_time.setAMPM("PM");
+			}
+			else
+			{
+				if(currentCellInternalTime.getTime().getHours() == 0){
+					hourShift = -12;
+				}
+				my_time.setAMPM("AM");
+			}
+		}
+
+		my_time.setHour(currentCellInternalTime.getTime().getHours() - hourShift);
+		my_time.setMinute(currentCellInternalTime.getTime().getMinutes());
+		my_time.setSecond(currentCellInternalTime.getTime().getSeconds());
 	}
 
 	/**
@@ -295,7 +329,11 @@ public class MainActivity extends AppCompatActivity {
 		am_pm.check(R.id.radio_AM);
 		twelve_twentyfour.check(R.id.radio_12);
 
+		// Initialize Calendar instance
+		currentCellInternalTime = (Calendar) Calendar.getInstance();
 
+		//Initialize syncButton
+		syncButton = (ImageButton) findViewById(R.id.syncButton);
 
 		// Initialize swipable hour picker
 		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
@@ -335,6 +373,13 @@ public class MainActivity extends AppCompatActivity {
 
 				my_time.setSecond(newVal);
 
+			}
+		});
+
+		syncButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onSyncButtonClicked();
 			}
 		});
 
@@ -394,6 +439,10 @@ public class MainActivity extends AppCompatActivity {
 	protected void onStart() {
 
 		super.onStart(); // Make sure the code in the parent class is used
+
+		// Set the default time of the clock to that of the cellphone's internal clock
+		onSyncButtonClicked();
+
 
 		Log.d(class_name, "Starting Main Activity"); // Log debug message
 	}
