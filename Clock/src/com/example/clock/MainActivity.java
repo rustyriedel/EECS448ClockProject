@@ -20,14 +20,14 @@ import java.lang.reflect.Array;
 
 
 public class MainActivity extends AppCompatActivity {
-	
+
 	private String class_name;
 
 	public static boolean my_bool;
-	
-	
+
+
 	public TextView showtime;
-	
+
 	public String hours;
 	public String minutes;
 	public String seconds;
@@ -46,43 +46,43 @@ public class MainActivity extends AppCompatActivity {
 	protected Timer my_time;
 
 
-	
+
 	protected Handler handler =null;
-	
+
 	protected updateTimer my_update;
-	
+
 	class updateTimer implements Runnable {
-		
+
 		public void run() {
-			
+
 			showtime.setText(my_time.display());
-			
+
 			if(handler != null) {
 				handler.postDelayed(this, 1000);
 				hourPicker.setValue(my_time.getHour());
 				minutePicker.setValue(my_time.getMinute());
 				secondPicker.setValue(my_time.getSecond());
 			}
-			
+
 		}
 	}
-	
+
 
 	public void callHandler() {
-		
+
 		handler = new Handler();
-		
-    	my_update = new updateTimer();
-	
-    	handler.postDelayed(my_update,1000);
+
+		my_update = new updateTimer();
+
+		handler.postDelayed(my_update,1000);
 	}
-	
+
 	public void removeHandler() {
-		
+
 		if(handler == null) {
-			
+
 		}
-		
+
 		else {
 			handler.removeCallbacks(my_update);
 			handler =null;
@@ -94,9 +94,42 @@ public class MainActivity extends AppCompatActivity {
 	 * Constructor the stores the Class_Name for debugging purposes 
 	 */
 	public MainActivity() {
-		
+
 		class_name = getClass().getName();
-		
+
+	}
+
+	public void onRadioButtonClicked2(View view) {
+		// Is the button now checked?
+		boolean checked = ((RadioButton) view).isChecked();
+		removeHandler();
+		// Check which radio button was clicked
+		switch (view.getId()) {
+
+			case R.id.radio_PM:
+				if (checked) {
+
+					if (my_time.getAMPM().equals("AM")) {
+						removeHandler();
+
+						my_time.setAMPM("PM");
+						callHandler();
+
+					}
+				}
+				break;
+			case R.id.radio_AM:
+				if (checked) {
+					removeHandler();
+					if (my_time.getAMPM().equals("PM")) {
+
+						my_time.setAMPM("AM");
+
+					}
+					callHandler();
+				}
+				break;
+		}
 	}
 
 	public void onRadioButtonClicked(View view) {
@@ -123,12 +156,12 @@ public class MainActivity extends AppCompatActivity {
 
 						my_time.setAMPM("AM");
 					}
-					my_time.setMode(true);
+				my_time.setMode(true);
 
-					break;
+				break;
 			case R.id.radio_24:
-				hourPicker.setMinValue(0);
 				hourPicker.setMaxValue(23);
+				hourPicker.setMinValue(0);
 				if (checked)
 					if(my_time.getAMPM()=="PM") {
 						if(my_time.getHour() ==12) {
@@ -142,29 +175,29 @@ public class MainActivity extends AppCompatActivity {
 						my_time.setAMPM("PM");
 
 					}
-					if(my_time.getAMPM()=="AM") {
-						if(my_time.getHour() == 12) {
-							my_time.setHour(0);
-						}
-
-						my_time.setAMPM("AM");
+				if(my_time.getAMPM()=="AM") {
+					if(my_time.getHour() == 12) {
+						my_time.setHour(0);
 					}
-					my_time.setMode(false);
-					break;
+
+					my_time.setAMPM("AM");
+				}
+				my_time.setMode(false);
+				break;
 
 
 		}
 		callHandler();
 	}
 
-	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        Log.d(class_name, "Creating Main Activity");
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		Log.d(class_name, "Creating Main Activity");
 
 
 
@@ -174,7 +207,8 @@ public class MainActivity extends AppCompatActivity {
 		my_time = new Timer(0,0,12);
 
 		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
-		hourPicker.setMaxValue(23);
+		hourPicker.setMaxValue(12);
+		hourPicker.setMinValue(1);
 
 		minutePicker = (NumberPicker) findViewById(R.id.numberPickerMin);
 		minutePicker.setMaxValue(59);
@@ -220,86 +254,86 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
-    @Override
+	@Override
 	protected void onStart() {
-		
-		
+
+
 		super.onStart(); // Make sure the code in the parent class is used
 
 
 
 		Log.d(class_name, "Starting Main Activity");
-		
-	
-    }
-    
-    
-    @Override
+
+
+	}
+
+
+	@Override
 	protected void onResume() {
-		
-		
+
+
 		super.onResume(); // Call code of parent class
-		
+
 		Log.d(class_name, "Resuming Main Activity");
-		
+
 	}
-    
-    
-    @Override
+
+
+	@Override
 	protected void onPause() {
-		
-		
+
+
 		super.onPause(); // Call parent code 
-		
+
 		Log.d(class_name, "Pausing Main Activity");
-		
-		
-		
+
+
+
 	}
-    
-    
-    protected void onStop() {
-		
-		
+
+
+	protected void onStop() {
+
+
 		super.onStop(); // Call parent code 
-		
-		
+
+
 		Log.d(class_name, "Stopping Main Activity");
-		
-		
-		
+
+
+
 	}
-    
-    
-    @Override
+
+
+	@Override
 	protected void onDestroy() {
-		
-		
+
+
 		super.onDestroy();
 
 		removeHandler();
-		
+
 		Log.d(class_name, "Destroying Main Activity ");
-		
+
 	}
 
 }
