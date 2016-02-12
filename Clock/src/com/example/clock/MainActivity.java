@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
 			case R.id.radio_12:
 
-				if (checked) // If 12 hour mode is checked
+				if (checked && !my_time.getMode()) // If 12 hour mode is checked
 
 					//Set the max min value of the hour selector to be between 1-12
 					hourPicker.setMaxValue(12);
@@ -228,10 +228,10 @@ public class MainActivity extends AppCompatActivity {
 
 					//Anytime greater than 13 in military time, is 13-12 PM in regular time
 					else if(my_time.getHour() >= 13) {
-
-						my_time.setHour(my_time.getHour()-12); // Set hour
-						my_time.setAMPM("PM"); // Set to PM
-
+						if(!my_time.getMode()) {
+							my_time.setHour(my_time.getHour() - 12); // Set hour
+							my_time.setAMPM("PM"); // Set to PM
+						}
 					}
 
 					//Anything below 13 corresponds to the same hour in regular time except when hours is 0
@@ -243,9 +243,9 @@ public class MainActivity extends AppCompatActivity {
 							my_time.setHour(12); // Set hour to 12
 
 						}
-
-						my_time.setAMPM("AM"); // Set to AM
-						
+						if(!my_time.getMode()) {
+							my_time.setAMPM("AM"); // Set to AM
+						}
 						
 					}
 
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
 			case R.id.radio_24:
 
-				if (checked) // If the 24 hour button is checked
+				if (checked && my_time.getMode()) // If the 24 hour button is checked
 
 					//Change the hour selector, so that the user can select between 0 and 23 hours
 					hourPicker.setMaxValue(23);
@@ -264,18 +264,10 @@ public class MainActivity extends AppCompatActivity {
 					// If we are in PM mode in 24 hour we convert the time appropriately
 					if(my_time.getAMPM()=="PM") {
 
-						//12 PM in regular time converts to 12 in military time
-						if(my_time.getHour() ==12) {
-
-							my_time.setHour(12); // Set hours to 12
-
-						}
-
-						//Any other PM time in regular time besides 12 converts to the number of hours +12 in military time
-						else {
-
+						//12 PM in regular time converts to 12 in military time, so exclude it
+						if(my_time.getHour() !=12 && my_time.getMode())
+						{
 							my_time.setHour(my_time.getHour() + 12); // Set hours to current hours + 12
-
 						}
 
 						my_time.setAMPM("PM"); // Set the current mode to PM so we know what mode we are in
