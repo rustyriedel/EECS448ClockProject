@@ -144,7 +144,13 @@ public class MainActivity extends AppCompatActivity {
 				hourPicker.setMaxValue(12);
 				hourPicker.setMinValue(1);
 				if (checked)
-					if(my_time.getHour() >= 13) {
+					
+					if(my_time.getHour() == 12)
+					{
+						my_time.setAMPM("PM");
+					}
+				
+					else if(my_time.getHour() >= 13) {
 						my_time.setHour(my_time.getHour()-12);
 						my_time.setAMPM("PM");
 					}
@@ -155,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
 						}
 
 						my_time.setAMPM("AM");
+						
+						
 					}
 				my_time.setMode(true);
 
