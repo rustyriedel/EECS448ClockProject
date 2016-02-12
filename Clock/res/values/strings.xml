@@ -6,6 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="button12">12 Hour Mode</string>
     <string name="button24">24 Hour Mode</string>
+    <string name="buttonAM">Change to AM</string>
+    <string name="buttonPM">Change to PM</string>
 
 
 </resources>
