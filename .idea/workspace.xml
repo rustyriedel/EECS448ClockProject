@@ -43,11 +43,11 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Clock/src/com/example/clock/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33065596">
-              <caret line="245" column="16" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.63587683">
+              <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7961#7996#0" expanded="false" />
+                <element signature="e#8072#8107#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -635,7 +635,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455318206418</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fix bugs concerning the addition bug #1 and bug #2">
+      <created>1455320185371</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1455320185371</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -685,7 +691,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implement syncButton to sync the app's timer with the internal cellphone clock" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement syncButton to sync the app's timer with the internal cellphone clock" />
+    <MESSAGE value="Fix bugs concerning the addition bug #1 and bug #2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs concerning the addition bug #1 and bug #2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -700,7 +707,7 @@
           <caret line="496" column="23" selection-start-line="496" selection-start-column="23" selection-end-line="496" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -751,7 +758,7 @@
           <caret line="53" column="205" selection-start-line="53" selection-start-column="205" selection-end-line="53" selection-end-column="205" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -810,7 +817,7 @@
           <caret line="323" column="29" selection-start-line="323" selection-start-column="29" selection-end-line="323" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -856,7 +863,7 @@
           <caret line="323" column="29" selection-start-line="323" selection-start-column="29" selection-end-line="323" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -902,7 +909,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -948,7 +955,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -994,7 +1001,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1040,7 +1047,7 @@
           <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1112,11 +1119,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Clock/src/com/example/clock/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33065596">
-          <caret line="245" column="16" selection-start-line="245" selection-start-column="16" selection-end-line="245" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.63587683">
+          <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7961#7996#0" expanded="false" />
+            <element signature="e#8072#8107#0" expanded="false" />
           </folding>
         </state>
       </provider>

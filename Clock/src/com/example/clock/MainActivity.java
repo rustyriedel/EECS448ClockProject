@@ -224,6 +224,8 @@ public class MainActivity extends AppCompatActivity {
 					if(my_time.getHour() == 12)
 					{
 						my_time.setAMPM("PM");
+						am_pm.check(R.id.radio_PM);
+
 					}
 
 					//Anytime greater than 13 in military time, is 13-12 PM in regular time
@@ -231,6 +233,10 @@ public class MainActivity extends AppCompatActivity {
 						if(!my_time.getMode()) {
 							my_time.setHour(my_time.getHour() - 12); // Set hour
 							my_time.setAMPM("PM"); // Set to PM
+							am_pm.check(R.id.radio_PM);
+
+
+
 						}
 					}
 
@@ -245,6 +251,10 @@ public class MainActivity extends AppCompatActivity {
 						}
 						if(!my_time.getMode()) {
 							my_time.setAMPM("AM"); // Set to AM
+							am_pm.check(R.id.radio_AM);
+
+
+
 						}
 						
 					}
