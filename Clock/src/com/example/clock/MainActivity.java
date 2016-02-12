@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 	public void onRadioButtonClicked2(View view) {
 		// Is the button now checked?
 		boolean checked = ((RadioButton) view).isChecked();
-		removeHandler();
+
 		// Check which radio button was clicked
 		switch (view.getId()) {
 
@@ -110,23 +110,23 @@ public class MainActivity extends AppCompatActivity {
 				if (checked) {
 
 					if (my_time.getAMPM().equals("AM")) {
-						removeHandler();
+
 
 						my_time.setAMPM("PM");
-						callHandler();
+
 
 					}
 				}
 				break;
 			case R.id.radio_AM:
 				if (checked) {
-					removeHandler();
+
 					if (my_time.getAMPM().equals("PM")) {
 
 						my_time.setAMPM("AM");
 
 					}
-					callHandler();
+
 				}
 				break;
 		}
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 	public void onRadioButtonClicked(View view) {
 		// Is the button now checked?
 		boolean checked = ((RadioButton) view).isChecked();
-		removeHandler();
+
 		// Check which radio button was clicked
 		switch(view.getId()) {
 
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 		}
-		callHandler();
+
 	}
 
 
@@ -214,6 +214,8 @@ public class MainActivity extends AppCompatActivity {
 
 		my_time = new Timer(0,0,12);
 
+		callHandler();
+
 		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
 		hourPicker.setMaxValue(12);
 		hourPicker.setMinValue(1);
@@ -227,11 +229,11 @@ public class MainActivity extends AppCompatActivity {
 		hourPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
 			@Override
 			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				removeHandler();
+
 
 				my_time.setHour(newVal);
 
-				callHandler();
+
 
 			}
 		});
@@ -239,20 +241,20 @@ public class MainActivity extends AppCompatActivity {
 		minutePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
 			@Override
 			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				removeHandler();
+
 
 				my_time.setMinute(newVal);
 
-				callHandler();
+
 			}
 		});
 
 		secondPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
 			@Override
 			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-				removeHandler();
+
 				my_time.setSecond(newVal);
-				callHandler();
+
 			}
 		});
 

@@ -145,10 +145,7 @@ public class Timer {
 	{
 		return current_second;
 	}
-	public boolean getMode() {
-
-		return(mode12hour);
-	}
+	public boolean getMode() {return(mode12hour);}
 
 
 
@@ -157,8 +154,6 @@ public class Timer {
 		mode12hour = mode;
 	}
 
-
-	//Setters
 	public void setHour(int hour)
 	{
 		current_hour = hour;
