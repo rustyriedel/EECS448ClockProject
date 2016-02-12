@@ -16,18 +16,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="111f5e9b-5a7b-4b11-9b07-2c6803479ada" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clock/AndroidManifest.xml" afterPath="$PROJECT_DIR$/Clock/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clock/gen/com/example/clock/BuildConfig.java" afterPath="$PROJECT_DIR$/Clock/gen/com/example/clock/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appcompat_v7/gen/android/support/v7/appcompat/BuildConfig.java" afterPath="$PROJECT_DIR$/appcompat_v7/gen/android/support/v7/appcompat/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clock/Clock.iml" afterPath="$PROJECT_DIR$/Clock/Clock.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clock/src/com/example/clock/MainActivity.java" afterPath="$PROJECT_DIR$/Clock/src/com/example/clock/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clock/src/com/example/clock/Timer.java" afterPath="$PROJECT_DIR$/Clock/src/com/example/clock/Timer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clock/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/Clock/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appcompat_v7/appcompat_v7.iml" afterPath="$PROJECT_DIR$/appcompat_v7/appcompat_v7.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Clock/res/values/strings.xml" afterPath="$PROJECT_DIR$/Clock/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="111f5e9b-5a7b-4b11-9b07-2c6803479ada" name="Default" comment="" />
     <ignored path="EECS448ClockProjectver3.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -66,10 +55,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Timer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Timer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Clock/src/com/example/clock/Timer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23762377">
+            <state vertical-scroll-proportion="66.87143">
               <caret line="29" column="113" selection-start-line="29" selection-start-column="113" selection-end-line="29" selection-end-column="113" />
               <folding />
             </state>
@@ -122,7 +111,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ic_launcheractual.png" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ic_launcheractual.png" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Clock/res/mipmap-hdpi/ic_launcheractual.png">
           <provider selected="true" editor-type-id="images">
             <state />
@@ -1040,11 +1029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Clock/res/mipmap-hdpi/ic_launcheractual.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Clock/src/com/example/clock/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.676471">
@@ -1063,10 +1047,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Clock/src/com/example/clock/Timer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23762377">
+        <state vertical-scroll-proportion="66.87143">
           <caret line="29" column="113" selection-start-line="29" selection-start-column="113" selection-end-line="29" selection-end-column="113" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clock/res/mipmap-hdpi/ic_launcheractual.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>
