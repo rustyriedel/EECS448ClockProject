@@ -1,3 +1,4 @@
+<!-- Default Relative Layout -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +10,7 @@
     android:orientation = "vertical"
     tools:context="com.example.clock.MainActivity" >
 
+    <!-- First Radio Group for setting 12, 24 hour mode -->
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -29,7 +31,7 @@
 
     </RadioGroup>
 
-
+    <!-- Second Radio Group for setting AM,PM -->
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -58,7 +60,7 @@
 
     </RadioGroup>
 
-
+    <!-- Number Picker for setting minutes -->
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,14 +68,15 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
+    <!-- Number Picker for setting hours -->
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numberPickerHour"
         android:layout_alignTop="@+id/numberPickerMin"
-        android:layout_toLeftOf="@+id/spinnerSeconds"
-        android:layout_toStartOf="@+id/spinnerSeconds" />
+         />
 
+    <!-- Number Picker for setting seconds -->
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,6 +91,7 @@
     android:layout_alignStart="@+id/timer"
     android:layout_marginBottom="75dp" />
 
+    <!-- Textview for displaying the time -->
     <TextView
         android:id = "@+id/timer"
         android:layout_width="wrap_content"
@@ -97,8 +101,5 @@
         android:layout_below="@+id/radioGroup"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"></TextView>
-
-
-
 
 </RelativeLayout>
