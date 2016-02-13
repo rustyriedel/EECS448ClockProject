@@ -184,13 +184,13 @@ public class Timer {
 				next_minutes =0; // Reset the minutes to 0
 
 				//If we are in 12 hour mode, go into this if statement
-				if(getMode() == true) {
+				if(mode12hour) {
 
-					if(previous_hour!=12) { // If the previous hour is not 12, go into this if statement
+					if(previous_hour != 12) { // If the previous hour is not 12, go into this if statement
 
-						if (previous_hour ==11) { // If the previous hour is 11, swtich from either AM to PM or PM to AM
+						if (previous_hour == 11) { // If the previous hour is 11, switch from either flip AM and PM
 
-							if(am_pm =="AM") { // If we are at AM, reset to PM
+							if(am_pm == "AM") { // If we are at AM, reset to PM
 
 								am_pm = "PM";
 
@@ -204,29 +204,31 @@ public class Timer {
 							next_hour = previous_hour +1; // Update next hour +1
 
 						}
-
-						else if (previous_hour ==12) { // If the previous hour is at 12, reset hour to 1
-
-
-							next_hour = 1;
-
+						else
+						{
+							next_hour = previous_hour +1;
 						}
+					}
+					else if (previous_hour == 12) { // If the previous hour is at 12, reset hour to 1
+
+
+						next_hour = 1;
 
 					}
 
 				}
 
 
-				else if (mode12hour ==false) { // If we are in 24 hour mode, go into this else if block
+				else if (!mode12hour) { // If we are in 24 hour mode, go into this else if block
 
-					if(previous_hour!=23) { // If we are not at hour 23, update hour +1
+					if(previous_hour != 23) { // If we are not at hour 23, update hour +1
 
-						next_hour = previous_hour +1;
+						next_hour = previous_hour + 1;
 
 					}
 
 
-					else if (previous_hour ==23) { // If we are at hour 23, reset hour to 0
+					else if (previous_hour == 23) { // If we are at hour 23, reset hour to 0
 
 						next_hour = 0;
 					}
@@ -256,26 +258,26 @@ public class Timer {
 	 */
 	public String display()  {
 
-			String display; // String that will be time display
+		String display; // String that will be time display
 
-			int[] my_time_array = updateTime(current_second,current_minute,current_hour); // Call update time method to update time
+		int[] my_time_array = updateTime(current_second,current_minute,current_hour); // Call update time method to update time
 
-			//Store newly updated time
-			current_second = my_time_array[0];
-			current_minute = my_time_array[1];
-			current_hour = my_time_array[2];
+		//Store newly updated time
+		current_second = my_time_array[0];
+		current_minute = my_time_array[1];
+		current_hour = my_time_array[2];
 
-			//Display time with AM/PM since mode is 12 hour
-			if(mode12hour==true) {
-				display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second) +" " + getAMPM();
+		//Display time with AM/PM since mode is 12 hour
+		if(mode12hour==true) {
+			display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second) +" " + getAMPM();
 
-			}
+		}
 
-			//Display time without AM/PM since mode is 24 hour
-			else {
-				display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
+		//Display time without AM/PM since mode is 24 hour
+		else {
+			display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
 
-			}
+		}
 
 
 		return(display); // Return the string to display
