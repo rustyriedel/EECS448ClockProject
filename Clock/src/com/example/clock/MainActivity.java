@@ -1,25 +1,36 @@
 
 package com.example.clock;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity; // Base class for android activities
 
 import android.os.Bundle; // Class that maps string values
 
 import android.os.Handler; // Handler class is used to run the timer in a seperate thread from the main thread
 
+import android.util.DisplayMetrics;
 import android.util.Log; // Class imported for debugging messages
 
 import android.view.Menu; // Default import for android menus
 import android.view.MenuItem; // Default import for android menus
 
+import android.view.MotionEvent;
 import android.view.View; // Class that is the base block for the user interface
 
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.NumberPicker; // Class used for swipable number pickers
 import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView; // Class used for text view of timer
 import android.widget.RadioButton; // Class used for radio buttons
 
+import java.awt.font.NumericShaper;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Calendar;
 
 
@@ -42,12 +53,18 @@ public class MainActivity extends AppCompatActivity {
 	private NumberPicker minutePicker = null; // Swipable interface for setting the minutes
 	private NumberPicker secondPicker = null; // Swipable interface for setting the seconds
 
-	private RadioGroup am_pm = null; // Radio group to select am or pm
-	private RadioGroup  twelve_twentyfour = null; // Radio group to select time mode
+	private Spinner modePicker = null;
+	private ArrayAdapter<String> adapter;
 
 	private Calendar currentCellInternalTime;
 
 	private ImageButton syncButton;
+
+	private Switch milTime;
+
+	private String mode[] = {"AM", "PM"};
+
+	float hourPosX;
 
 	private Timer my_time = null; // Decleration of a variable with type Timer (see Timer class)
 
@@ -77,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
 			showtime.setText(my_time.display()); // Set the text display by using the display method of the timer class
 			hourPicker.setValue(my_time.getHour()); // Set the swipable hourPicker to the current hour
 			minutePicker.setValue(my_time.getMinute()); // Set the swipable hourPicker to the current minute
-			secondPicker.setValue(my_time.getSecond()); // Set the swipable hourPicker to the current second
-
+			changeValueByOne(secondPicker, true);
+			checkModeCheck();
 			if(handler != null) { // If the handler is not null we delay one full second and then update the time again
 
 				handler.postDelayed(this, 1000);
@@ -139,37 +156,28 @@ public class MainActivity extends AppCompatActivity {
 	 * @see Timer
 	 * @since           1.0
 	 */
-	public void onRadioButtonClicked2(View view) {
-		// Is the button now checked?
-		boolean checked = ((RadioButton) view).isChecked(); // Boolean that stores if one of the radio button's is checked
 
-		// Check which radio button was clicked
-		switch (view.getId()) {
+	private void changeValueByOne(final NumberPicker higherPicker, final boolean increment) {
 
-			case R.id.radio_PM:
-				if (checked) { // If the pm button is checked
+		Method method;
+		try {
+			// refelction call for
+			// higherPicker.changeValueByOne(true);
+			method = higherPicker.getClass().getDeclaredMethod("changeValueByOne", boolean.class);
+			method.setAccessible(true);
+			method.invoke(higherPicker, increment);
 
-					if (my_time.getAMPM().equals("AM")) { // Check if the previous mode is AM
-
-						my_time.setAMPM("PM"); // Switch the mode
-
-					}
-				}
-				break;
-
-			case R.id.radio_AM:
-				if (checked) { // If the am button is checked
-
-					if (my_time.getAMPM().equals("PM")) { // Check if the previous mode is PM
-
-						my_time.setAMPM("AM"); // Switch to Am
-
-					}
-
-				}
-				break;
+		} catch (final NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (final IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (final IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (final InvocationTargetException e) {
+			e.printStackTrace();
 		}
 	}
+
 
 	public void onSyncButtonClicked()
 	{
@@ -205,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
 	 * @see Timer
 	 * @since           1.0
 	 */
+
 	public void onRadioButtonClicked(View view) {
 
 		boolean checked = ((RadioButton) view).isChecked(); // Boolean that stores if one of the buttons is checked
@@ -214,91 +223,9 @@ public class MainActivity extends AppCompatActivity {
 
 			case R.id.radio_12:
 
-				if (checked && !my_time.getMode()) // If 12 hour mode is checked
-
-					//Set the max min value of the hour selector to be between 1-12
-					hourPicker.setMaxValue(12);
-					hourPicker.setMinValue(1);
-
-					//12 PM corresponds to 12 military time
-					if(my_time.getHour() == 12)
-					{
-						my_time.setAMPM("PM");
-						am_pm.check(R.id.radio_PM);
-
-					}
-
-					//Anytime greater than 13 in military time, is 13-12 PM in regular time
-					else if(my_time.getHour() >= 13) {
-						if(!my_time.getMode()) {
-							my_time.setHour(my_time.getHour() - 12); // Set hour
-							my_time.setAMPM("PM"); // Set to PM
-							am_pm.check(R.id.radio_PM);
-
-
-
-						}
-					}
-
-					//Anything below 13 corresponds to the same hour in regular time except when hours is 0
-					else {
-
-						// If the hours is 0, set the time to 12 AM
-						if(my_time.getHour()==0) {
-
-							my_time.setHour(12); // Set hour to 12
-
-						}
-						if(!my_time.getMode()) {
-							my_time.setAMPM("AM"); // Set to AM
-							am_pm.check(R.id.radio_AM);
-
-
-
-						}
-						
-					}
-
-				my_time.setMode(true); // Set mode to 12 hour, so that the timer display can be updated properly
-
-				break;
-
 			case R.id.radio_24:
 
-				if (checked && my_time.getMode()) // If the 24 hour button is checked
 
-					//Change the hour selector, so that the user can select between 0 and 23 hours
-					hourPicker.setMaxValue(23);
-					hourPicker.setMinValue(0);
-
-					// If we are in PM mode in 24 hour we convert the time appropriately
-					if(my_time.getAMPM()=="PM") {
-
-						//12 PM in regular time converts to 12 in military time, so exclude it
-						if(my_time.getHour() !=12 && my_time.getMode())
-						{
-							my_time.setHour(my_time.getHour() + 12); // Set hours to current hours + 12
-						}
-
-						my_time.setAMPM("PM"); // Set the current mode to PM so we know what mode we are in
-
-					}
-
-				//If the current 12hour mode is AM
-				if(my_time.getAMPM()=="AM") {
-
-					// 12 AM corrspoends to 0 military time
-
-					if(my_time.getHour() == 12) {
-
-						my_time.setHour(0); // Set hours to 0
-
-					}
-
-					my_time.setAMPM("AM"); // Set mode to AM
-				}
-
-				my_time.setMode(false); // Set mode so that we are in 24 hour mode
 
 				break;
 
@@ -323,19 +250,13 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		//Initialize radio groups
-		am_pm = (RadioGroup) findViewById(R.id.radioGroup2);
-		twelve_twentyfour = (RadioGroup) findViewById(R.id.radioGroup);
-
-		//Set radio groups so that we start in AM and 12 hour mode
-		am_pm.check(R.id.radio_AM);
-		twelve_twentyfour.check(R.id.radio_12);
-
 		// Initialize Calendar instance
 		currentCellInternalTime = (Calendar) Calendar.getInstance();
 
 		//Initialize syncButton
 		syncButton = (ImageButton) findViewById(R.id.syncButton);
+
+		milTime = (Switch) findViewById(R.id.milTime);
 
 		// Initialize swipable hour picker
 		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
@@ -349,6 +270,18 @@ public class MainActivity extends AppCompatActivity {
 		// Initialize swipable second picker
 		secondPicker = (NumberPicker) findViewById(R.id.numberPickerSec);
 		secondPicker.setMaxValue(59);
+
+		modePicker = (Spinner) findViewById(R.id.spinner);
+		ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, mode);
+		modePicker.setAdapter(modeAdapter);
+
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+		int screenHeight = metrics.heightPixels;
+		int screenWidth  = metrics.widthPixels;
+
+		hourPosX = hourPicker.getTranslationX();
 
 		// This sets the hours using the setHour method of the Timer class when the user swipes to a new hour
 		hourPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -382,6 +315,30 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				onSyncButtonClicked();
+			}
+
+		});
+
+		modePicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				if (position == 0) {
+					my_time.setAMPM("AM");
+				} else {
+					my_time.setAMPM("PM");
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+
+			}
+		});
+
+		milTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					onSwitcherCheck();
 			}
 		});
 
@@ -509,6 +466,99 @@ public class MainActivity extends AppCompatActivity {
 
 		Log.d(class_name, "Destroying Main Activity "); // Log debug message
 
+	}
+
+	protected void checkModeCheck()
+	{
+		if(my_time.getAMPM() == "PM")
+		{
+			modePicker.setSelection(1,false);
+		} else {
+			modePicker.setSelection(0,false);
+		}
+	}
+
+	protected void onSwitcherCheck()
+	{
+		boolean checked = milTime.isChecked();
+
+		if(checked) {
+			modePicker.setVisibility(View.VISIBLE);
+			if (!my_time.getMode()) // If 12 hour mode is checked
+
+				// Set the max min value of the hour selector to be between 1-12
+				hourPicker.setMaxValue(12);
+			hourPicker.setMinValue(1);
+
+			//12 PM corresponds to 12 military time
+			if (my_time.getHour() == 12) {
+				my_time.setAMPM("PM");
+				modePicker.setSelection(1, false);
+				//am_pm.check(R.id.radio_PM);
+			}
+
+			//Anytime greater than 13 in military time, is 13-12 PM in regular time
+			else if (my_time.getHour() >= 13) {
+				if (!my_time.getMode()) {
+					my_time.setHour(my_time.getHour() - 12); // Set hour
+					my_time.setAMPM("PM"); // Set to PM
+					modePicker.setSelection(1, false);
+				}
+			}
+
+			//Anything below 13 corresponds to the same hour in regular time except when hours is 0
+			else {
+
+				// If the hours is 0, set the time to 12 AM
+				if (my_time.getHour() == 0) {
+
+					my_time.setHour(12); // Set hour to 12
+				}
+				if (!my_time.getMode()) {
+					my_time.setAMPM("AM"); // Set to AM
+					modePicker.setSelection(0, false);
+				}
+			}
+			my_time.setMode(true); // Set mode to 12 hour, so that the timer display can be updated properly
+		}
+	else
+	{
+		if(my_time.getMode()) // If the 24 hour button is checked
+
+			//Change the hour selector, so that the user can select between 0 and 23 hours
+			hourPicker.setMaxValue(23);
+			hourPicker.setMinValue(0);
+
+	// If we are in PM mode in 24 hour we convert the time appropriately
+	if(my_time.getAMPM()=="PM") {
+
+		//12 PM in regular time converts to 12 in military time, so exclude it
+		if(my_time.getHour() !=12 && my_time.getMode())
+		{
+			my_time.setHour(my_time.getHour() + 12); // Set hours to current hours + 12
+		}
+
+		my_time.setAMPM("PM"); // Set the current mode to PM so we know what mode we are in
+
+	}
+
+	//If the current 12hour mode is AM
+	if(my_time.getAMPM()=="AM") {
+
+		// 12 AM corrspoends to 0 military time
+
+		if(my_time.getHour() == 12) {
+
+			my_time.setHour(0); // Set hours to 0
+
+		}
+
+		my_time.setAMPM("AM"); // Set mode to AM
+	}
+
+	my_time.setMode(false); // Set mode so that we are in 24 hour mode
+	modePicker.setVisibility(View.INVISIBLE);
+		}
 	}
 
 }
