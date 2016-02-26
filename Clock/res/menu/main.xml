@@ -5,8 +5,26 @@
 
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="3"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/timerButton"
+        android:orderInCategory="0"
+        android:title="@string/buttonTimer"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/stopwatchButton"
+        android:orderInCategory="1"
+        android:title="@string/buttonStopwatch"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/calendarButton"
+        android:orderInCategory="2"
+        android:title="@string/buttonCalendar"
+        app:showAsAction="always"/>
 
 </menu>

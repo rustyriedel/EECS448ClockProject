@@ -10,6 +10,8 @@
     <string name="button24">24 Hour Mode</string>
     <string name="buttonAM">Change to AM</string>
     <string name="buttonPM">Change to PM</string>
-
+    <string name="buttonTimer">Timer</string>
+    <string name="buttonStopwatch">Stopwatch</string>
+    <string name="buttonCalendar">Calendar</string>
 
 </resources>
