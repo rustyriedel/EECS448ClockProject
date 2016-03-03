@@ -5,28 +5,29 @@ package com.example.clock;
  */
 public class actualTimer {
 
-    private int hour;
-    private int minute;
-    private int second;
-    private boolean run = true;
+    private int current_hour;
+    private int current_minute;
+    private int current_second;
+    private boolean run;
 
     public actualTimer(int hours, int minutes, int seconds){
 
-        hour = hours;
-        minute = minutes;
-        second = seconds;
+        current_hour = 0;
+        current_minute = 0;
+        current_second = 0;
+        run=false;
     }
 
     public int getHour() {
-        return hour;
+        return current_hour;
     }
 
     public int getMinute() {
-        return minute;
+        return current_minute;
     }
 
     public int getSecond() {
-        return second;
+        return current_second;
     }
 
     public boolean getRun(){
@@ -34,25 +35,26 @@ public class actualTimer {
     }
 
     public void setHour(int h){
-        hour = h;
+        current_hour = h;
 
     }
 
     public void setMinute(int m){
-        minute = m;
+        current_minute = m;
     }
 
     public void setSecond(int s){
-        second = s;
+        current_second = s;
     }
     public void setRun(boolean r){
         run = r;
     }
 
     public void reset() {
-        hour = 0;
-        minute = 0;
-        second = 0;
+        current_hour = 0;
+        current_minute = 0;
+        current_second = 0;
+        run = false;
     }
 
     public int[] updateTimer(int previousHour, int previousMinute, int previousSecond) {
@@ -106,15 +108,15 @@ public class actualTimer {
 
     }
 
-    public String display(){
+    public String timerDisplay(){
         String display;
-        int[] timerValue = updateTimer(hour, minute, second);
+        int[] timerValue = updateTimer(current_hour, current_minute, current_second);
 
-        hour=timerValue[0];
-        minute=timerValue[1];
-        second=timerValue[2];
+        current_hour=timerValue[0];
+        current_minute=timerValue[1];
+        current_second=timerValue[2];
 
-        display= String.format("%d", hour) + ":" + String.format("%02d", minute) + ":" + String.format("%02d", second);
+        display= String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
         return(display);
 
     }
