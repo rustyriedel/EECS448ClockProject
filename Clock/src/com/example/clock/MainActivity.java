@@ -379,6 +379,9 @@ public class MainActivity extends AppCompatActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
+
+		// The selected menu item will call its respective helper function
+		// to start a new activity.
 		switch(item.getItemId()){
 			case R.id.timerButton:
 				startTimerActivity();
@@ -396,21 +399,25 @@ public class MainActivity extends AppCompatActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	// Helper function for starting the timer activity
 	private void startTimerActivity(){
 		Intent timerIntent = new Intent(".timerActivity");
 		startActivity(timerIntent);
 	}
 
+	// Helper function for starting the stopwatch activity
 	private void startStopwatchActivity(){
 		Intent stopwatchIntent = new Intent(".stopwatchActivity");
 		startActivity(stopwatchIntent);
 	}
 
+	// Helper function for starting the calendar activity
 	private void startCalendarActivity(){
 		Intent calendarIntent = new Intent(".calendarActivity");
 		startActivity(calendarIntent);
 	}
 
+	// Increases the font size of the clock
 	private void zoomText(){
 		//TODO stub
 		//increase font size for the clock.

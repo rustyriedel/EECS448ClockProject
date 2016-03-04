@@ -2,8 +2,6 @@ package com.example.clock;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Menu;
 
 /**
  * Created by Rusty on 3/3/2016.
