@@ -33,7 +33,7 @@ public class timerActivity extends Activity {
         setContentView(R.layout.activity_timer);
 
         //instance of the stopwatch
-        my_time = new actualTimer(0,0,0);
+        my_time = new actualTimer();
 
 
         //set up text to display time
