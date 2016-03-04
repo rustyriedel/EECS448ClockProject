@@ -18,28 +18,28 @@ public class stopwatchActivity extends Activity {
     private Stopwatch my_time = null; // Decleration of a variable with type Timer (see Timer class)
 
     /*
-	 * Handler is used to update the timer display in real time in a seperate thread then the main thread.
-	 * Handler is used so that the main thread does not become blocked and unresponsive.
-	 */
+    * Handler is used to update the timer display in real time in a seperate thread then the main thread.
+    * Handler is used so that the main thread does not become blocked and unresponsive.
+    */
     private Handler handler =null;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch);
 
         //instance of the stopwatch
-        final Stopwatch my_time = new Stopwatch();
+        my_time = new Stopwatch();
 
         //set up buttons
         Button startButton = (Button)findViewById(R.id.startButton);
         Button resetButton = (Button)findViewById(R.id.resetButton);
 
         //set up text to display time
-        TextView showtime = (TextView) findViewById(R.id.stopwatchTime);
+        showtime = (TextView) findViewById(R.id.stopwatchTime);
 
         //set up startButton listener
-        startButton.setOnClickListener(
+        /*startButton.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v) {
                         my_time.setUpdate(true);
@@ -56,9 +56,14 @@ public class stopwatchActivity extends Activity {
                         my_time.Reset();
                     }
                 }
-        );
+        );*/
+
+        // This starts queing call to the run method which runs until removeHandler is called in onDestroy
+        callHandler();
 
 
+        //Debug message
+        Log.d(class_name, "Creating stopwatch Activity");
 
     }
 
@@ -95,7 +100,7 @@ public class stopwatchActivity extends Activity {
      */
     public void callHandler() {
         handler = new Handler(); // Create a new instance of the handler
-        updateTimer my_update = new updateTimer(); // Create a new instance of the update_timer
+        my_update = new updateTimer(); // Create a new instance of the update_timer
         handler.postDelayed(my_update,1000); // Queue calls to the run method every 1 second
     }
 
@@ -109,6 +114,16 @@ public class stopwatchActivity extends Activity {
             handler.removeCallbacks(my_update); // Remove any queued calls to run //TODO this is broken.
             handler =null; // Set the handler object to null
         }
+    }
+
+    public void startClicked(View view){
+        my_time.setUpdate(true);
+    }
+    public void pauseClicked(View view){
+        my_time.setUpdate(false);
+    }
+    public void resetClicked(View view){
+        my_time.Reset();
     }
 
     /**
@@ -165,6 +180,12 @@ public class stopwatchActivity extends Activity {
         super.onDestroy();
         removeHandler(); // Destroy handler and any remaining calls to run when the activity is destroyed
         Log.d(class_name, "Destroying stopwatch Activity "); // Log debug message
+    }
+
+    public stopwatchActivity() {
+
+        class_name = getClass().getName(); // Store the class name
+
     }
 
 }
