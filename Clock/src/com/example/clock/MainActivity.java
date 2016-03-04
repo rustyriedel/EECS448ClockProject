@@ -392,6 +392,9 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.calendarButton:
 				startCalendarActivity();
 				break;
+			case R.id.displayOffButton:
+				startDisplayOffActivity();
+				break;
 			case R.id.zoomButton:
 				zoomText();
 				break;
@@ -415,6 +418,12 @@ public class MainActivity extends AppCompatActivity {
 	private void startCalendarActivity(){
 		Intent calendarIntent = new Intent(".calendarActivity");
 		startActivity(calendarIntent);
+	}
+
+	// Helper function for starting the display off activity
+	private void startDisplayOffActivity(){
+		Intent displayOffIntent = new Intent(".displayOffActivity");
+		startActivity(displayOffIntent);
 	}
 
 	// Increases the font size of the clock
