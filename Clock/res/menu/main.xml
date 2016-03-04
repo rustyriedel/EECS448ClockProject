@@ -4,9 +4,27 @@
     tools:context="com.example.clock.MainActivity" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:id="@+id/timerButton"
+        android:orderInCategory="0"
+        android:title="@string/timerButton"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/stopwatchButton"
+        android:orderInCategory="1"
+        android:title="@string/stopwatchButton"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/calendarButton"
+        android:orderInCategory="2"
+        android:title="@string/calendarButton"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/zoomButton"
+        android:orderInCategory="3"
+        android:title="@string/zoomButton"
         app:showAsAction="never"/>
 
 </menu>

@@ -1,6 +1,7 @@
 
 package com.example.clock;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity; // Base class for android activities
 
 import android.os.Bundle; // Class that maps string values
@@ -378,11 +379,41 @@ public class MainActivity extends AppCompatActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch(item.getItemId()){
+			case R.id.timerButton:
+				startTimerActivity();
+				break;
+			case R.id.stopwatchButton:
+				startStopwatchActivity();
+				break;
+			case R.id.calendarButton:
+				startCalendarActivity();
+				break;
+			case R.id.zoomButton:
+				zoomText();
+				break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void startTimerActivity(){
+		Intent timerIntent = new Intent(".timerActivity");
+		startActivity(timerIntent);
+	}
+
+	private void startStopwatchActivity(){
+		Intent stopwatchIntent = new Intent(".stopwatchActivity");
+		startActivity(stopwatchIntent);
+	}
+
+	private void startCalendarActivity(){
+		Intent calendarIntent = new Intent(".calendarActivity");
+		startActivity(calendarIntent);
+	}
+
+	private void zoomText(){
+		//TODO stub
+		//increase font size for the clock.
 	}
 
 	/**

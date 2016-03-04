@@ -28,6 +28,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".timerActivity"
+            android:label="Timer" >
+            <intent-filter>
+                <action android:name=".timerActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".stopwatchActivity"
+            android:label="Stopwatch" >
+            <intent-filter>
+                <action android:name=".stopwatchActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".calendarActivity"
+            android:label="Calendar" >
+            <intent-filter>
+                <action android:name=".calendarActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
