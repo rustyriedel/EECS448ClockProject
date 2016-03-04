@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0:00:00"
+        android:text="@string/realTimer"
         android:id="@+id/realTimer"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center" />
@@ -22,7 +22,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="@string/startTimerButton"
         android:id="@+id/startTimerButton"
         android:layout_below="@+id/realTimer"
         android:layout_toLeftOf="@+id/pauseTimerButton"
@@ -30,7 +30,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pause"
+        android:text="@string/pauseTimerButton"
         android:id="@+id/pauseTimerButton"
         android:layout_below="@+id/realTimer"
         android:layout_centerHorizontal="true"
@@ -40,7 +40,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
+        android:text="@string/resetTimerButton"
         android:id="@+id/resetTimerButton"
         android:layout_below="@+id/realTimer"
         android:layout_toRightOf="@+id/pauseTimerButton"
