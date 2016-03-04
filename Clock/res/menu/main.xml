@@ -22,8 +22,14 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/zoomButton"
+        android:id="@+id/displayOffButton"
         android:orderInCategory="3"
+        android:title="@string/displayOffButton"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/zoomButton"
+        android:orderInCategory="4"
         android:title="@string/zoomButton"
         app:showAsAction="never"/>
 
