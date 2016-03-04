@@ -22,7 +22,7 @@ public class actualTimer {
      * This constructor will be called in onCreate() of the timer activity
      * @since       1.0
      */
-    public actualTimer(int hours, int minutes, int seconds){
+    public actualTimer(){
 
         current_hour = 0;
         current_minute = 0;
@@ -121,19 +121,16 @@ public class actualTimer {
         int nextMinute;
         int nextSecond;
 
+        nextHour = previousHour;
+        nextMinute = previousMinute;
+        nextSecond = previousSecond;
+
         //if the timer is at zero, don't run anymore
         if (previousHour == 0 && previousMinute == 0 && previousSecond == 0) {
             run = false;
-        } else {
-            run = true;
         }
         //increment timer if run is true
         if (run == true) {
-
-
-            nextHour = previousHour;
-            nextMinute = previousMinute;
-            nextSecond = previousSecond;
 
             //decrease the second value by 1, if it's at 0, loop to 59
             if (previousSecond != 0) {
@@ -156,11 +153,6 @@ public class actualTimer {
 
 
 
-        }
-        else{
-            nextHour=0;
-            nextMinute=0;
-            nextSecond=0;
         }
 
         //store new values in the array
