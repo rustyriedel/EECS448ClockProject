@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="85sp"
         android:text="@string/realTimer"
         android:id="@+id/realTimer"
         android:layout_centerHorizontal="true"
@@ -23,31 +23,37 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="25sp"
         android:text="@string/startTimerButton"
         android:id="@+id/startTimerButton"
         android:layout_below="@+id/realTimer"
         android:layout_toLeftOf="@+id/pauseTimerButton"
+        android:layout_marginTop="64dp"
         android:onClick="startTimerClicked"/>
 
     <!-- Button for pausing the timer -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="25sp"
         android:text="@string/pauseTimerButton"
         android:id="@+id/pauseTimerButton"
         android:layout_below="@+id/realTimer"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:layout_marginTop="64dp"
         android:onClick="pauseTimerClicked"/>
 
     <!-- Button for resetting the timer -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="25sp"
         android:text="@string/resetTimerButton"
         android:id="@+id/resetTimerButton"
         android:layout_below="@+id/realTimer"
         android:layout_toRightOf="@+id/pauseTimerButton"
+        android:layout_marginTop="64dp"
         android:onClick="resetTimerClicked"/>
 
     <!-- Number Picker for setting minutes -->

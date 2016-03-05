@@ -8,24 +8,28 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="90sp"
         android:text="@string/stopwatchTime"
         android:id="@+id/stopwatchTime"
+        android:layout_marginTop="16dp"
         android:layout_gravity="center_horizontal" />
 
     <!-- Button for starting the stopwatch -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="70sp"
         android:text="@string/stopwatchStartButton"
         android:id="@+id/startButton"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
         android:onClick="startClicked"/>
 
     <!-- Button for pausing the stopwatch -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="70sp"
         android:text="@string/stopwatchPauseButton"
         android:id="@+id/pauseButton"
         android:layout_gravity="center_horizontal"
@@ -35,6 +39,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="70sp"
         android:text="@string/stopwatchResetButton"
         android:id="@+id/resetButton"
         android:layout_gravity="center_horizontal"

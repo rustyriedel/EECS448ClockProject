@@ -209,7 +209,7 @@ public class Stopwatch {
         current_hour = my_time_array[2];
 
         //Display time
-        display = String.format("%d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
+        display = String.format("%02d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
 
 
         return(display); // Return the string to display
