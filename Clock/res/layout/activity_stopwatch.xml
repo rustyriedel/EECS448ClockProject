@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-
+    <!-- Textview for displaying stopwatch time -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,6 +13,7 @@
         android:id="@+id/stopwatchTime"
         android:layout_gravity="center_horizontal" />
 
+    <!-- Button for starting the stopwatch -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +21,8 @@
         android:id="@+id/startButton"
         android:layout_gravity="center_horizontal"
         android:onClick="startClicked"/>
+
+    <!-- Button for pausing the stopwatch -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +31,7 @@
         android:layout_gravity="center_horizontal"
         android:onClick="pauseClicked"/>
 
+    <!-- Button for resetting the stopwatch -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,4 +39,5 @@
         android:id="@+id/resetButton"
         android:layout_gravity="center_horizontal"
         android:onClick="resetClicked"/>
+
 </LinearLayout>

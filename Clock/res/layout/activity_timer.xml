@@ -9,7 +9,7 @@
     android:orientation = "vertical"
     tools:context="com.example.clock.timerActivity" >
 
-
+    <!-- Textview for displaying timer time -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,6 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center" />
 
+    <!-- Button for starting the timer -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,6 +28,8 @@
         android:layout_below="@+id/realTimer"
         android:layout_toLeftOf="@+id/pauseTimerButton"
         android:onClick="startTimerClicked"/>
+
+    <!-- Button for pausing the timer -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,6 +40,7 @@
         android:layout_gravity="center"
         android:onClick="pauseTimerClicked"/>
 
+    <!-- Button for resetting the timer -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,6 +49,7 @@
         android:layout_below="@+id/realTimer"
         android:layout_toRightOf="@+id/pauseTimerButton"
         android:onClick="resetTimerClicked"/>
+
     <!-- Number Picker for setting minutes -->
     <NumberPicker
         android:layout_width="wrap_content"
@@ -69,6 +74,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
 
 </RelativeLayout>

@@ -3,24 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.clock.MainActivity" >
 
+    <!-- Menu item for the timer activity -->
     <item
         android:id="@+id/timerButton"
         android:orderInCategory="0"
         android:title="@string/timerButton"
         app:showAsAction="never"/>
 
+    <!-- Menu item for the stopwatch activity -->
     <item
         android:id="@+id/stopwatchButton"
         android:orderInCategory="1"
         android:title="@string/stopwatchButton"
         app:showAsAction="never"/>
 
+    <!-- Menu item for the displayOff activity -->
     <item
         android:id="@+id/displayOffButton"
         android:orderInCategory="3"
         android:title="@string/displayOffButton"
         app:showAsAction="never"/>
 
+    <!-- Menu item for the zoom function -->
     <item
         android:id="@+id/zoomButton"
         android:orderInCategory="4"
