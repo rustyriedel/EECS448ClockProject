@@ -86,6 +86,15 @@ public class MainActivity extends AppCompatActivity {
          secondPicker.setValue(my_time.getSecond()); // Set the swipable hourPicker to the current second
          monthSelector.setValue(my_time.getMonth());
          daySelector.setValue(my_time.getDay());
+         if(my_time.getMonth() == 3 ||my_time.getMonth() == 5||my_time.getMonth() == 8||my_time.getMonth() == 10){
+            daySelector.setMaxValue(30);
+         }
+         else if(my_time.getMonth() == 1){
+            daySelector.setMaxValue(29);
+         }
+         else{
+            daySelector.setMaxValue(31);
+         }
 
          if(handler != null) { // If the handler is not null we delay one full second and then update the time again
 
@@ -345,6 +354,15 @@ public class MainActivity extends AppCompatActivity {
          @Override
          public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
             my_time.setMonth(newVal);
+            if(newVal == 3 ||newVal == 5||newVal == 8||newVal == 10){
+               daySelector.setMaxValue(30);
+            }
+            else if(newVal == 1){
+               daySelector.setMaxValue(29);
+            }
+            else{
+               daySelector.setMaxValue(31);
+            }
          }
       });
 
