@@ -47,15 +47,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".calendarActivity"
-            android:label="Calendar" >
-            <intent-filter>
-                <action android:name=".calendarActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".displayOffActivity"
             android:label="DisplayOff" >
             <intent-filter>

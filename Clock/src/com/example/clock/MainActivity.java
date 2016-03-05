@@ -54,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
 	 */
 	private Handler handler =null;
 
+	// Calendar data
+	private NumberPicker daySelector = null;
+	private NumberPicker monthSelector = null;
+	private TextView dayOfWeek = null;
+	private int month = 0;
+	private int day = 0;
+
 	/**
 	 * This class implements the run method from the Runnable interface. This class allows the Handler class to queue calls to the run method, so that the timer display can be updated in a seperate thread.
 	 * @version    First Deployment
@@ -275,6 +282,42 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
+	// calculates the day of the week
+	public String getDayOfWeek(int theMonth, int theDay ){
+		String wkDay = "";
+		int[] array = {31,29,31,30,31,30,31,31,30,31,30,31};
+		int numDays = theDay-1;
+
+
+		if((theMonth == 1 && theDay >29) || (theMonth == 3 && theDay > 30 ) || (theMonth == 5 && theDay >30)
+				|| (theMonth == 8 && theDay > 30) || (theMonth == 10 && theDay > 30)){
+			return "Invalid";
+		}
+		if(theMonth > 0){
+			for(int i=0; i<theMonth; i++){
+				numDays += array[i];
+			}
+		}
+		int days = numDays % 7;
+		switch (days){
+			case 0: wkDay = "Friday";
+				break;
+			case 1: wkDay = "Saturday";
+				break;
+			case 2: wkDay = "Sunday";
+				break;
+			case 3: wkDay = "Monday";
+				break;
+			case 4: wkDay = "Tuesday";
+				break;
+			case 5: wkDay = "Wednesday";
+				break;
+			case 6: wkDay = "Thursday";
+		}
+
+		return wkDay;
+	}
+
 
 
 	/**
@@ -299,8 +342,6 @@ public class MainActivity extends AppCompatActivity {
 		am_pm.check(R.id.radio_AM);
 		twelve_twentyfour.check(R.id.radio_12);
 
-
-
 		// Initialize swipable hour picker
 		hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
 		hourPicker.setMaxValue(12);
@@ -313,6 +354,40 @@ public class MainActivity extends AppCompatActivity {
 		// Initialize swipable second picker
 		secondPicker = (NumberPicker) findViewById(R.id.numberPickerSec);
 		secondPicker.setMaxValue(59);
+
+		// Initialize swipable day picker
+		daySelector = (NumberPicker) findViewById(R.id.dayOfMonth);
+		daySelector.setMaxValue(31);
+		daySelector.setMinValue(1);
+
+		// Initialize swipable month picker
+		monthSelector = (NumberPicker) findViewById(R.id.theMonth);
+		monthSelector.setMaxValue(11);
+		monthSelector.setMinValue(0);
+		monthSelector.setDisplayedValues(new String[]{"January", "February", "March", "April", "May", "June",
+				"July", "August", "September", "October", "November", "December"});
+
+		// Initialize dayOfWeek textview
+		dayOfWeek = (TextView) findViewById(R.id.dayOfWeek);
+		dayOfWeek.setText("Friday"); //Default for January 1
+
+		// This sets the month
+		monthSelector.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				month = newVal;
+				dayOfWeek.setText(getDayOfWeek(month,day));
+			}
+		});
+
+		// This sets the day
+		daySelector.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+			@Override
+			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+				day = newVal;
+				dayOfWeek.setText(getDayOfWeek(month,day));
+			}
+		});
 
 		// This sets the hours using the setHour method of the Timer class when the user swipes to a new hour
 		hourPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -392,9 +467,6 @@ public class MainActivity extends AppCompatActivity {
 			case R.id.stopwatchButton:
 				startStopwatchActivity();
 				break;
-			case R.id.calendarButton:
-				startCalendarActivity();
-				break;
 			case R.id.displayOffButton:
 				startDisplayOffActivity();
 				break;
@@ -417,12 +489,6 @@ public class MainActivity extends AppCompatActivity {
 		startActivity(stopwatchIntent);
 	}
 
-	// Helper function for starting the calendar activity
-	private void startCalendarActivity(){
-		Intent calendarIntent = new Intent(".calendarActivity");
-		startActivity(calendarIntent);
-	}
-
 	// Helper function for starting the display off activity
 	private void startDisplayOffActivity(){
 		Intent displayOffIntent = new Intent(".displayOffActivity");
@@ -441,7 +507,6 @@ public class MainActivity extends AppCompatActivity {
 			showtime.setTextColor(Color.BLACK);
 			zoomFlag = false;
 		}
-
 	}
 
 	/**

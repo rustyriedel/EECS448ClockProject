@@ -28,7 +28,6 @@
             android:text="@string/button24"
             android:onClick="onRadioButtonClicked"/>
 
-
     </RadioGroup>
 
     <!-- Second Radio Group for setting AM,PM -->
@@ -66,15 +65,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/numberPickerMin"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toLeftOf="@+id/timer"
+        android:layout_toStartOf="@+id/timer" />
 
     <!-- Number Picker for setting hours -->
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numberPickerHour"
-        android:layout_alignTop="@+id/numberPickerMin"
-         />
+        android:layout_alignTop="@+id/numberPickerMin" />
 
     <!-- Number Picker for setting seconds -->
     <NumberPicker
@@ -82,14 +81,26 @@
         android:layout_height="wrap_content"
         android:id="@+id/numberPickerSec"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Number Picker for setting month -->
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/theMonth"
+        android:gravity="left"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/timer"
+        android:layout_toEndOf="@+id/timer" />
+
+    <!-- Number Picker for setting dayofMonth -->
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dayOfMonth"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-
-    android:layout_above="@+id/numberPickerMin"
-    android:layout_alignLeft="@+id/timer"
-    android:layout_alignStart="@+id/timer"
-    android:layout_marginBottom="75dp" />
 
     <!-- Textview for displaying the time -->
     <TextView
@@ -101,6 +112,15 @@
         android:layout_below="@+id/radioGroup"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
-        android:textColor="#000000"></TextView>
+        android:textColor="#000000"/>
+
+    <!-- Textview for displaying the day -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/dayOfWeek"
+        android:layout_below="@+id/timer"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
