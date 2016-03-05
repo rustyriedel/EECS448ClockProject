@@ -124,6 +124,7 @@
         android:id="@+id/dayOfWeek"
         android:layout_below="@+id/timer"
         android:layout_centerHorizontal="true"
+        android:textSize="15sp"
         android:textColor="#000000" />
 
 </RelativeLayout>

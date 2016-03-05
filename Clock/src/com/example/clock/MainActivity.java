@@ -500,12 +500,12 @@ public class MainActivity extends AppCompatActivity {
 	private void zoomText(){
 		if(zoomFlag == false){
 			showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
-			showtime.setTextColor(Color.BLACK);
+			dayOfWeek.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
 			zoomFlag = true;
 		}
 		else{
 			showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-			showtime.setTextColor(Color.BLACK);
+			dayOfWeek.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 			zoomFlag = false;
 		}
 	}
