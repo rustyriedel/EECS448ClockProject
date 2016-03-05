@@ -2,6 +2,7 @@
 package com.example.clock;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity; // Base class for android activities
 
 import android.os.Bundle; // Class that maps string values
@@ -20,7 +21,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView; // Class used for text view of timer
 import android.widget.RadioButton; // Class used for radio buttons
 
-
 /**
  * Main Activity  is the activity in which a timer is displayed, swipers allow the user to set the time, and radio buttons allow the user to swtich between 12/24 hour mdoe and AM/PM.
  * @author     Cesar Avalos
@@ -31,6 +31,9 @@ import android.widget.RadioButton; // Class used for radio buttons
  * @since       1.0
  */
 public class MainActivity extends AppCompatActivity {
+
+	// Boolean flag to keep the state of the zoomable text size.
+	private boolean zoomFlag = true;
 
 	private String class_name; // String for class name for debugging purposes
 
@@ -428,8 +431,17 @@ public class MainActivity extends AppCompatActivity {
 
 	// Increases the font size of the clock
 	private void zoomText(){
-		//TODO stub
-		//increase font size for the clock.
+		if(zoomFlag == false){
+			showtime.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_Small);
+			showtime.setTextColor(Color.BLACK);
+			zoomFlag = true;
+		}
+		else{
+			showtime.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_Large);
+			showtime.setTextColor(Color.BLACK);
+			zoomFlag = false;
+		}
+
 	}
 
 	/**
