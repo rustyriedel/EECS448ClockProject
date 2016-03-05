@@ -65,8 +65,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/numberPickerMin"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/timer"
-        android:layout_toStartOf="@+id/timer" />
+        android:layout_toRightOf="@+id/numberPickerHour"
+        android:layout_toEndOf="@+id/numberPickerHour" />
 
     <!-- Number Picker for setting hours -->
     <NumberPicker
@@ -81,7 +81,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/numberPickerSec"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toRightOf="@+id/numberPickerMin"
+        android:layout_toEndOf="@+id/numberPickerMin" />
 
     <!-- Number Picker for setting month -->
     <NumberPicker
@@ -90,8 +91,9 @@
         android:id="@+id/theMonth"
         android:gravity="left"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/timer"
-        android:layout_toEndOf="@+id/timer" />
+        android:layout_toRightOf="@+id/numberPickerSec"
+        android:layout_toLeftOf="@+id/dayOfMonth"
+        android:layout_toStartOf="@+id/dayOfMonth" />
 
     <!-- Number Picker for setting dayofMonth -->
     <NumberPicker
@@ -118,9 +120,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/dayOfWeek"
         android:layout_below="@+id/timer"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000" />
 
 </RelativeLayout>
