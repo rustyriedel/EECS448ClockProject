@@ -11,6 +11,7 @@ import android.os.Handler; // Handler class is used to run the timer in a sepera
 
 import android.util.Log; // Class imported for debugging messages
 
+import android.util.TypedValue;
 import android.view.Menu; // Default import for android menus
 import android.view.MenuItem; // Default import for android menus
 
@@ -33,7 +34,7 @@ import android.widget.RadioButton; // Class used for radio buttons
 public class MainActivity extends AppCompatActivity {
 
 	// Boolean flag to keep the state of the zoomable text size.
-	private boolean zoomFlag = true;
+	private boolean zoomFlag = false;
 
 	private String class_name; // String for class name for debugging purposes
 
@@ -498,12 +499,12 @@ public class MainActivity extends AppCompatActivity {
 	// Increases the font size of the clock
 	private void zoomText(){
 		if(zoomFlag == false){
-			showtime.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_Small);
+			showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
 			showtime.setTextColor(Color.BLACK);
 			zoomFlag = true;
 		}
 		else{
-			showtime.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_Large);
+			showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 			showtime.setTextColor(Color.BLACK);
 			zoomFlag = false;
 		}
