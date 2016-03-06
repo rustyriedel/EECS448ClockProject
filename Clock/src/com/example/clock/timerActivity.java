@@ -1,9 +1,11 @@
 package com.example.clock;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -20,6 +22,7 @@ public class timerActivity extends Activity {
     private NumberPicker hourPicker = null; // Swipable interface for setting the hours
     private NumberPicker minutePicker = null; // Swipable interface for setting the minutes
     private NumberPicker secondPicker = null; // Swipable interface for setting the seconds
+    private boolean zoomFlag = false;
 
     /*
     * Handler is used to update the timer display in real time in a seperate thread then the main thread.
@@ -211,6 +214,25 @@ public class timerActivity extends Activity {
 
         class_name = getClass().getName(); // Store the class name
 
+    }
+
+
+    // Helper function for starting the display off activity
+    public void startDisplayOffActivity(View view){
+        Intent displayOffIntent = new Intent(".displayOffActivity");
+        startActivity(displayOffIntent);
+    }
+
+    // Increases the font size of the clock
+    public void zoomText(View view){
+        if(zoomFlag == false){
+            showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 85);
+            zoomFlag = true;
+        }
+        else{
+            showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            zoomFlag = false;
+        }
     }
 
 }

@@ -1,9 +1,11 @@
 package com.example.clock;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ public class stopwatchActivity extends Activity {
     private String class_name; // String for class name for debugging purposes
     private TextView showtime = null; // Textview used to actually display the time
     private Stopwatch my_time = null; // Decleration of a variable with type Timer (see Timer class)
+    private boolean zoomFlag = false;
 
     /*
     * Handler is used to update the timer display in real time in a seperate thread then the main thread.
@@ -38,25 +41,6 @@ public class stopwatchActivity extends Activity {
         //set up text to display time
         showtime = (TextView) findViewById(R.id.stopwatchTime);
 
-        //set up startButton listener
-        /*startButton.setOnClickListener(
-                new Button.OnClickListener(){
-                    public void onClick(View v) {
-                        my_time.setUpdate(true);
-                        // This starts queuing call to the run method which runs until removeHandler is called in onDestroy
-                        callHandler();
-                    }
-                }
-        );
-
-        //set up resetButton listener
-        resetButton.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        my_time.Reset();
-                    }
-                }
-        );*/
 
         // This starts queing call to the run method which runs until removeHandler is called in onDestroy
         callHandler();
@@ -186,6 +170,23 @@ public class stopwatchActivity extends Activity {
 
         class_name = getClass().getName(); // Store the class name
 
+    }
+    // Helper function for starting the display off activity
+    public void startDisplayOffActivity(View view){
+        Intent displayOffIntent = new Intent(".displayOffActivity");
+        startActivity(displayOffIntent);
+    }
+
+    // Increases the font size of the clock
+    public void zoomText(View view){
+        if(zoomFlag == false){
+            showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 85);
+            zoomFlag = true;
+        }
+        else{
+            showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            zoomFlag = false;
+        }
     }
 
 }
