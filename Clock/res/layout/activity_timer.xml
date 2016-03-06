@@ -56,21 +56,24 @@
         android:layout_marginTop="25dp"
         android:onClick="resetTimerClicked"/>
 
+    <!-- Button for zooming the timer display -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Zoom"
+        android:text="@string/zoomTimerButton"
         android:id="@+id/zoomTimerButton"
         android:layout_below="@+id/startTimerButton"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:onClick="zoomText"/>
+
+    <!-- Button for turning off the timer display -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Display Off"
+        android:text="@string/displayOffTimerButton"
         android:id="@+id/displayTimerButton"
         android:layout_below="@+id/resetTimerButton"
         android:layout_gravity="center"

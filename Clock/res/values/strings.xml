@@ -19,8 +19,12 @@
     <string name="stopwatchStartButton">Start</string>
     <string name="stopwatchPauseButton">Pause</string>
     <string name="stopwatchResetButton">Reset</string>
+    <string name="stopwatchZoomButton">Zoom</string>
+    <string name="stopwatchDisplayOffButton">Display Off</string>
     <string name="startTimerButton">Start</string>
     <string name="pauseTimerButton">Pause</string>
     <string name="resetTimerButton">Reset</string>
+    <string name="zoomTimerButton">Zoom</string>
+    <string name="displayOffTimerButton">DisplayOff</string>
 
 </resources>

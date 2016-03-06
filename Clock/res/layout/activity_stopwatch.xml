@@ -44,19 +44,23 @@
         android:id="@+id/resetButton"
         android:layout_gravity="center_horizontal"
         android:onClick="resetClicked"/>
+
+    <!-- Button for zooming the stopwatch display -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Zoom"
+        android:text="@string/stopwatchZoomButton"
         android:id="@+id/zoomStopwatchButton"
         android:layout_gravity="center_horizontal"
         android:onClick="zoomText"/>
+
+    <!-- Button for turning off the stopwatch display -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Display Off"
+        android:text="@string/stopwatchDisplayOffButton"
         android:id="@+id/displayStopwatchButton"
         android:layout_gravity="center_horizontal"
         android:onClick="startDisplayOffActivity"/>
