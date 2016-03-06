@@ -221,8 +221,12 @@ public class Stopwatch {
         current_hour = my_time_array[3];
 
         //Display time
-        display = String.format("%02d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second)+ ":" + String.format("%02d", current_cent);
-
+        if(current_hour == 0){
+            display = String.format("%02d", current_minute) + ":" + String.format("%02d", current_second) + ":" + String.format("%02d", current_cent);
+        }
+        else {
+            display = String.format("%01d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second) + ":" + String.format("%02d", current_cent);
+        }
 
         return(display); // Return the string to display
 
