@@ -2,6 +2,7 @@ package com.example.clock;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -122,6 +123,12 @@ public class timerActivity extends Activity {
             hourPicker.setValue(my_time.getHour()); // Set the swipable hourPicker to the current hour
             minutePicker.setValue(my_time.getMinute()); // Set the swipable hourPicker to the current minute
             secondPicker.setValue(my_time.getSecond()); // Set the swipable hourPicker to the current second
+            if(my_time.getHour()==0&&my_time.getMinute()==0&&my_time.getSecond()==0){
+                showtime.setTextColor(Color.RED);
+            }
+            else{
+                showtime.setTextColor(Color.BLACK);
+            }
 
             if(handler != null) { // If the handler is not null we delay one full second and then update the time again
                 handler.postDelayed(this, 1000);
