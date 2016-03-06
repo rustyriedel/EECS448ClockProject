@@ -338,6 +338,7 @@ public class Timer {
    // calculates the day of the week
    public String getDayOfWeek(){
       String wkDay = "";
+      String month = "";
       int[] array = {31,29,31,30,31,30,31,31,30,31,30,31};
       int numDays = current_day-1;
 
@@ -362,8 +363,33 @@ public class Timer {
             break;
          case 6: wkDay = "Thursday";
       }
+      switch (current_month){
+         case 0: month = "January";
+            break;
+         case 1: month = "February";
+            break;
+         case 2: month = "March";
+            break;
+         case 3: month = "April";
+            break;
+         case 4: month = "May";
+            break;
+         case 5: month = "June";
+            break;
+         case 6: month = "July";
+            break;
+         case 7: month = "August";
+            break;
+         case 8: month = "September";
+            break;
+         case 9: month = "October";
+            break;
+         case 10: month = "November";
+            break;
+         case 11: month = "December";
+      }
 
-      return wkDay;
+      return wkDay+ " " + month + " " +current_day;
    }
 
 }
