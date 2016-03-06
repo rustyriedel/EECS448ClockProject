@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
 
    private RadioGroup am_pm = null; // Radio group to select am or pm
    private RadioGroup  twelve_twentyfour = null; // Radio group to select time mode
+   private RadioButton radio_12 = null;
+   private RadioButton radio_24 = null;
+   private RadioButton radio_AM = null;
+   private RadioButton radio_PM = null;
 
    private Timer my_time = null; // Decleration of a variable with type Timer (see Timer class)
 
@@ -319,6 +323,10 @@ public class MainActivity extends AppCompatActivity {
       //Set radio groups so that we start in AM and 12 hour mode
       am_pm.check(R.id.radio_AM);
       twelve_twentyfour.check(R.id.radio_12);
+      radio_12 = (RadioButton) findViewById(R.id.radio_12);
+      radio_24 = (RadioButton) findViewById(R.id.radio_24);
+      radio_AM = (RadioButton) findViewById(R.id.radio_AM);
+      radio_PM = (RadioButton) findViewById(R.id.radio_PM);
 
       // Initialize swipable hour picker
       hourPicker = (NumberPicker) findViewById(R.id.numberPickerHour);
@@ -485,11 +493,19 @@ public class MainActivity extends AppCompatActivity {
       if(zoomFlag == false){
          showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
          dayOfWeek.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+         radio_12.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+         radio_24.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+         radio_AM.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+         radio_PM.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
          zoomFlag = true;
       }
       else{
          showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
          dayOfWeek.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+         radio_12.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+         radio_24.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+         radio_AM.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+         radio_PM.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
          zoomFlag = false;
       }
    }
