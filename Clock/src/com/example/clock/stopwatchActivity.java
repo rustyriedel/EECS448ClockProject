@@ -19,6 +19,12 @@ public class stopwatchActivity extends Activity {
     private TextView showtime = null; // Textview used to actually display the time
     private Stopwatch my_time = null; // Decleration of a variable with type Timer (see Timer class)
     private boolean zoomFlag = false;
+    private Button startButton = null;
+    private Button pauseButton = null;
+    private Button resetButton = null;
+    private Button zoomButton = null;
+    private Button displayButton = null;
+
 
     /*
     * Handler is used to update the timer display in real time in a seperate thread then the main thread.
@@ -35,8 +41,11 @@ public class stopwatchActivity extends Activity {
         my_time = new Stopwatch();
 
         //set up buttons
-        Button startButton = (Button)findViewById(R.id.startButton);
-        Button resetButton = (Button)findViewById(R.id.resetButton);
+        startButton = (Button)findViewById(R.id.startButton);
+        resetButton = (Button)findViewById(R.id.resetButton);
+        pauseButton = (Button)findViewById(R.id.pauseButton);
+        zoomButton = (Button)findViewById(R.id.zoomStopwatchButton);
+        displayButton = (Button)findViewById(R.id.displayStopwatchButton);
 
         //set up text to display time
         showtime = (TextView) findViewById(R.id.stopwatchTime);
@@ -181,10 +190,20 @@ public class stopwatchActivity extends Activity {
     public void zoomText(View view){
         if(zoomFlag == false){
             showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 85);
+            startButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+            pauseButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+            resetButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+            zoomButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
+            displayButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
             zoomFlag = true;
         }
         else{
             showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            startButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            pauseButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            resetButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            zoomButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            displayButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             zoomFlag = false;
         }
     }
