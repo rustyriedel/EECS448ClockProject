@@ -20,12 +20,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button12"
+            android:textSize = "15sp"
             android:onClick="onRadioButtonClicked"/>
 
         <RadioButton android:id="@+id/radio_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button24"
+            android:textSize = "15sp"
             android:onClick="onRadioButtonClicked"/>
 
     </RadioGroup>
@@ -41,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/buttonPM"
+            android:textSize = "15sp"
             android:onClick="onRadioButtonClicked2"
             android:layout_gravity="right"
             android:layout_below="@+id/radioGroup"
@@ -51,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/buttonAM"
+            android:textSize = "15sp"
             android:onClick="onRadioButtonClicked2"
             android:layout_gravity="right"
             android:layout_below="@+id/radio_PM"
@@ -113,7 +117,7 @@
         android:gravity="center"
         android:layout_below="@+id/radioGroup"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="50dp"
         android:textSize="20sp"
         android:textColor="#000000"/>
 
