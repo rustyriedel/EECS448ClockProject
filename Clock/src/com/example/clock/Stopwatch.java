@@ -14,6 +14,7 @@ public class Stopwatch {
     private int current_hour;
     private int current_minute;
     private int current_second;
+    private int current_cent;
 
     //Boolean tells updateTime() if to update time
     private boolean update;
@@ -28,13 +29,14 @@ public class Stopwatch {
         current_second = 0;
         current_minute = 0;
         current_hour = 0;
+        current_cent = 0;
         update = false;
 
     }
 
     //Getters
 
-	/**
+   /**
      * Get method for class variable current_hour
      * @return Returns class variable current_hour
      * @since       1.0
@@ -74,37 +76,37 @@ public class Stopwatch {
         return update;
     }
 
-	//Setter methods
+   //Setter methods
 
-	/**
-	 * Set method for class variable current_hour
-	 * @param hour - Class variable current_hour is set to hour
-	 * @since       1.0
-	 */
-	public void setHour(int hour)
-	{
-		current_hour = hour;
-	}
+   /**
+    * Set method for class variable current_hour
+    * @param hour - Class variable current_hour is set to hour
+    * @since       1.0
+    */
+   public void setHour(int hour)
+   {
+      current_hour = hour;
+   }
 
-	/**
-	 * Set method for class variable current_minute
-	 * @param min - Class variable current_minute is set to min
-	 * @since       1.0
-	 */
-	public void setMinute(int min)
-	{
-		current_minute = min;
-	}
+   /**
+    * Set method for class variable current_minute
+    * @param min - Class variable current_minute is set to min
+    * @since       1.0
+    */
+   public void setMinute(int min)
+   {
+      current_minute = min;
+   }
 
-	/**
-	 * Set method for class variable current_second
-	 * @param sec - Class variable current_second is set to sec
-	 * @since       1.0
-	 */
-	public void setSecond(int sec)
-	{
-		current_second = sec;
-	}
+   /**
+    * Set method for class variable current_second
+    * @param sec - Class variable current_second is set to sec
+    * @since       1.0
+    */
+   public void setSecond(int sec)
+   {
+      current_second = sec;
+   }
     /**
      * Set method for class variable update
      * @param sec - Class variable update is set to up
@@ -115,7 +117,7 @@ public class Stopwatch {
         update = up;
     }
 
-	/**
+   /**
      * This method resets variables to 0 and false
      * @since       1.0
      */
@@ -125,8 +127,9 @@ public class Stopwatch {
         current_second = 0;
         current_minute = 0;
         current_hour = 0;
+        current_cent = 0;
 
-		//Stop updating time
+      //Stop updating time
         update = false;
     }
 
@@ -139,11 +142,12 @@ public class Stopwatch {
      * @return int[] - This method returns the updated hours,minutes, seconds and stores them in an int arrays
      * @since       1.0
      */
-    public int[] updateTime(int previous_seconds, int previous_minutes, int previous_hour) {
+    public int[] updateTime(int previous_cent, int previous_seconds, int previous_minutes, int previous_hour) {
 
-        int[] my_time_array = new int[3]; // Time array to store updated time values
+        int[] my_time_array = new int[4]; // Time array to store updated time values
 
         //Variables that will temporarily store updated time values
+        int next_cent = previous_cent;
         int next_seconds = previous_seconds;
 
         int next_minutes = previous_minutes;
@@ -153,37 +157,44 @@ public class Stopwatch {
         //If told to update
         if(update) {
             //If we are not at 59 seconds, just update the seconds +1
-            if (previous_seconds != 59) {
-
-                next_seconds = previous_seconds + 1;
-
+            if (previous_cent != 95){
+                next_cent = next_cent+5;
             }
-            //If the seconds is 59, go into this else if statement
-            else if (previous_seconds == 59) {
+            else {
+                next_cent = 0;
+                if (previous_seconds != 59) {
 
-                next_seconds = 0; // Reset the seconds to 0
-
-                //If we are not at 59 minutes,update the minutes +1
-                if (previous_minutes != 59) {
-                    next_minutes = previous_minutes + 1;
+                    next_seconds = previous_seconds + 1;
 
                 }
+                //If the seconds is 59, go into this else if statement
+                else if (previous_seconds == 59) {
 
-                //If we are at 59 minutes, increase hours by 1
-                else if (previous_minutes == 59) {
+                    next_seconds = 0; // Reset the seconds to 0
 
-                    next_minutes = 0; // Reset the minutes to 0
+                    //If we are not at 59 minutes,update the minutes +1
+                    if (previous_minutes != 59) {
+                        next_minutes = previous_minutes + 1;
 
-                    next_hour = next_hour + 1;
+                    }
+
+                    //If we are at 59 minutes, increase hours by 1
+                    else if (previous_minutes == 59) {
+
+                        next_minutes = 0; // Reset the minutes to 0
+
+                        next_hour = next_hour + 1;
+                    }
+
                 }
-
             }
         }
 
         //Store updated time values in array
-        my_time_array[0] = next_seconds;
-        my_time_array[1] = next_minutes;
-        my_time_array[2] = next_hour;
+        my_time_array[0] = next_cent;
+        my_time_array[1] = next_seconds;
+        my_time_array[2] = next_minutes;
+        my_time_array[3] = next_hour;
 
         //Return array
         return(my_time_array);
@@ -201,15 +212,16 @@ public class Stopwatch {
 
         String display; // String that will be time display
 
-        int[] my_time_array = updateTime(current_second,current_minute,current_hour); // Call update time method to update time
+        int[] my_time_array = updateTime(current_cent,current_second,current_minute,current_hour); // Call update time method to update time
 
         //Store newly updated time
-        current_second = my_time_array[0];
-        current_minute = my_time_array[1];
-        current_hour = my_time_array[2];
+        current_cent = my_time_array[0];
+        current_second = my_time_array[1];
+        current_minute = my_time_array[2];
+        current_hour = my_time_array[3];
 
         //Display time
-        display = String.format("%02d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second);
+        display = String.format("%02d", current_hour) + ":" + String.format("%02d", current_minute) + ":" + String.format("%02d", current_second)+ ":" + String.format("%02d", current_cent);
 
 
         return(display); // Return the string to display
