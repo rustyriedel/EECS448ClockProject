@@ -78,7 +78,7 @@ public class stopwatchActivity extends Activity {
             showtime.setText(my_time.display()); // Set the text display by using the display method of the Stopwatch class
 
             if(handler != null) { // If the handler is not null we delay one full second and then update the time again
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 37);
             }
         }
     }
@@ -94,7 +94,7 @@ public class stopwatchActivity extends Activity {
     public void callHandler() {
         handler = new Handler(); // Create a new instance of the handler
         my_update = new updateTimer(); // Create a new instance of the update_timer
-        handler.postDelayed(my_update,1000); // Queue calls to the run method every 1 second
+        handler.postDelayed(my_update,37); // Queue calls to the run method every 1 second
     }
 
     /**
