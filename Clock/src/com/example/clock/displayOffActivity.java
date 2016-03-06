@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by Rusty on 3/4/2016.
+ * displayOffActivity simulates the device being off without stopping
+ * the update process because it simply displays a black screen when called.
+ * When physically turned the device off, the process would stop and clock
+ * would stop updating the time.
  */
 public class displayOffActivity extends Activity {
     @Override

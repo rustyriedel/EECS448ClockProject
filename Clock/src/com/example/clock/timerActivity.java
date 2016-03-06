@@ -13,7 +13,8 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 /**
- * Created by Rusty on 3/3/2016.
+ * timerActivity is the activity that gives a interfaces for using the
+ * actualTimer class written by Sierra Seacat.
  */
 public class timerActivity extends Activity {
 
@@ -23,12 +24,12 @@ public class timerActivity extends Activity {
     private NumberPicker hourPicker = null; // Swipable interface for setting the hours
     private NumberPicker minutePicker = null; // Swipable interface for setting the minutes
     private NumberPicker secondPicker = null; // Swipable interface for setting the seconds
-    private Button startButton = null;
-    private Button pauseButton = null;
-    private Button resetButton = null;
-    private Button zoomButton = null;
-    private Button displayButton = null;
-    private boolean zoomFlag = false;
+    private Button startButton = null; // Button for starting the timer
+    private Button pauseButton = null; // Button for pausing the timer
+    private Button resetButton = null; // Button for resetting the timer
+    private Button zoomButton = null; // Button for zooming the timer display
+    private Button displayButton = null; // Button for turning off the timer display
+    private boolean zoomFlag = false; // Boolean flag that holds the status of the display zoom
 
     /*
     * Handler is used to update the timer display in real time in a seperate thread then the main thread.
@@ -36,6 +37,12 @@ public class timerActivity extends Activity {
     */
     private Handler handler =null;
 
+    /**
+     * onCreate is called when the activity is first loaded. We initialize all variables and start the Handler.
+     *
+     * @param savedInstanceState     Default parameter set by android
+     * @since           1.0
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,6 +169,8 @@ public class timerActivity extends Activity {
         }
     }
 
+
+    // Sets the button callbacks.
     public void startTimerClicked(View view){
         my_time.setRun(true);
     }
@@ -228,20 +237,35 @@ public class timerActivity extends Activity {
         Log.d(class_name, "Destroying timer Activity "); // Log debug message
     }
 
+    /**
+     * Constructor used to store the class name
+     * @since           1.0
+     */
     public timerActivity() {
 
         class_name = getClass().getName(); // Store the class name
 
     }
 
-
-    // Helper function for starting the display off activity
+    /**
+     * Creates an intent for the displayOffActivity, and then requests
+     * that android start the activity by calling startActivity with the
+     * intent as its parameter.
+     *
+     * @param view
+     */
     public void startDisplayOffActivity(View view){
         Intent displayOffIntent = new Intent(".displayOffActivity");
         startActivity(displayOffIntent);
     }
 
-    // Increases the font size of the clock
+    /**
+     * Uses setTextSize to change the font size of each element in the
+     * layout individually. if the zoomFlag is true, it is in the zoom
+     * state, false is non-zoomed state.
+     *
+     * @param view
+     */
     public void zoomText(View view){
         if(zoomFlag == false){
             showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 85);

@@ -1,24 +1,17 @@
 
 package com.example.clock;
 
-import android.content.Intent;
-import android.graphics.Color;
+import android.content.Intent; // Class that creates intents for use by the android operating system
 import android.support.v7.app.AppCompatActivity; // Base class for android activities
-
 import android.os.Bundle; // Class that maps string values
-
 import android.os.Handler; // Handler class is used to run the timer in a seperate thread from the main thread
-
 import android.util.Log; // Class imported for debugging messages
-
-import android.util.TypedValue;
+import android.util.TypedValue; // Class that holds resource values
 import android.view.Menu; // Default import for android menus
 import android.view.MenuItem; // Default import for android menus
-
 import android.view.View; // Class that is the base block for the user interface
-
 import android.widget.NumberPicker; // Class used for swipable number pickers
-import android.widget.RadioGroup;
+import android.widget.RadioGroup; // Class used for groups of radio buttons
 import android.widget.TextView; // Class used for text view of timer
 import android.widget.RadioButton; // Class used for radio buttons
 
@@ -84,12 +77,14 @@ public class MainActivity extends AppCompatActivity {
       public void run() {
 
          showtime.setText(my_time.display()); // Set the text display by using the display method of the timer class
-         dayOfWeek.setText(my_time.getDayOfWeek());
+         dayOfWeek.setText(my_time.getDayOfWeek()); // Set the day of the week
          hourPicker.setValue(my_time.getHour()); // Set the swipable hourPicker to the current hour
          minutePicker.setValue(my_time.getMinute()); // Set the swipable hourPicker to the current minute
          secondPicker.setValue(my_time.getSecond()); // Set the swipable hourPicker to the current second
-         monthSelector.setValue(my_time.getMonth());
-         daySelector.setValue(my_time.getDay());
+         monthSelector.setValue(my_time.getMonth()); // Set the month
+         daySelector.setValue(my_time.getDay()); // Set the day displayed
+
+         // Handle special cases for the day/month selector
          if(my_time.getMonth() == 3 ||my_time.getMonth() == 5||my_time.getMonth() == 8||my_time.getMonth() == 10){
             daySelector.setMaxValue(30);
          }
@@ -300,8 +295,6 @@ public class MainActivity extends AppCompatActivity {
    }
 
 
-
-
    /**
     * onCreate is called when the app is first loaded. We initialize all variables and start the Handler.
     *
@@ -470,25 +463,41 @@ public class MainActivity extends AppCompatActivity {
       return super.onOptionsItemSelected(item);
    }
 
-   // Helper function for starting the timer activity
+   /**
+    * Creates an intent for the timerActivity, and then requests
+    * that android start the activity by calling startActivity with the
+    * intent as its parameter.
+    */
    private void startTimerActivity(){
       Intent timerIntent = new Intent(".timerActivity");
       startActivity(timerIntent);
    }
 
-   // Helper function for starting the stopwatch activity
+   /**
+    * Creates an intent for the stopwatchActivity, and then requests
+    * that android start the activity by calling startActivity with the
+    * intent as its parameter.
+    */
    private void startStopwatchActivity(){
       Intent stopwatchIntent = new Intent(".stopwatchActivity");
       startActivity(stopwatchIntent);
    }
 
-   // Helper function for starting the display off activity
+   /**
+    * Creates an intent for the displayOffActivity, and then requests
+    * that android start the activity by calling startActivity with the
+    * intent as its parameter.
+    */
    private void startDisplayOffActivity(){
       Intent displayOffIntent = new Intent(".displayOffActivity");
       startActivity(displayOffIntent);
    }
 
-   // Increases the font size of the clock
+   /**
+    * Uses setTextSize to change the font size of each element in the
+    * layout individually. if the zoomFlag is true, it is in the zoom
+    * state, false is non-zoomed state.
+    */
    private void zoomText(){
       if(zoomFlag == false){
          showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
@@ -552,7 +561,6 @@ public class MainActivity extends AppCompatActivity {
 
    }
 
-
    /**
     * Method created automatically by android
     *
@@ -566,7 +574,6 @@ public class MainActivity extends AppCompatActivity {
 
    }
 
-
    /**
     * Method created automatically by android. Call removeHandler() to destroy the Handler
     *
@@ -575,7 +582,6 @@ public class MainActivity extends AppCompatActivity {
     */
    @Override
    protected void onDestroy() {
-
 
       super.onDestroy();
 

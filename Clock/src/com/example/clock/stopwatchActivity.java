@@ -11,19 +11,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Created by Rusty on 3/3/2016.
+ * The stopwatchActivity is an activity that gives you an interface for using
+ * the Stopwatch class written by Dillon Fruhwirth.
  */
 public class stopwatchActivity extends Activity {
 
+    //privata data memebers
     private String class_name; // String for class name for debugging purposes
     private TextView showtime = null; // Textview used to actually display the time
     private Stopwatch my_time = null; // Decleration of a variable with type Timer (see Timer class)
-    private boolean zoomFlag = false;
-    private Button startButton = null;
-    private Button pauseButton = null;
-    private Button resetButton = null;
-    private Button zoomButton = null;
-    private Button displayButton = null;
+    private boolean zoomFlag = false; // Boolean flag to hold zoom status
+    private Button startButton = null; // Button for starting the stopwatch
+    private Button pauseButton = null; // Button for pausing the stopwatch
+    private Button resetButton = null; // Button for resetting the stopwatch
+    private Button zoomButton = null; // Button for zooming the stopwatch
+    private Button displayButton = null; // Button for turning the display off
 
 
     /*
@@ -32,6 +34,12 @@ public class stopwatchActivity extends Activity {
     */
     private Handler handler =null;
 
+    /**
+     * onCreate is called when the activity is first loaded. We initialize all variables and start the Handler.
+     *
+     * @param savedInstanceState     Default parameter set by android
+     * @since           1.0
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +117,7 @@ public class stopwatchActivity extends Activity {
         }
     }
 
+    // Set up Button callbacks.
     public void startClicked(View view){
         my_time.setUpdate(true);
     }
@@ -175,18 +184,35 @@ public class stopwatchActivity extends Activity {
         Log.d(class_name, "Destroying stopwatch Activity "); // Log debug message
     }
 
+    /**
+     * Constructor used to store the class name
+     * @since           1.0
+     */
     public stopwatchActivity() {
 
         class_name = getClass().getName(); // Store the class name
 
     }
-    // Helper function for starting the display off activity
+
+    /**
+     * Creates an intent for the displayOffActivity, and then requests
+     * that android start the activity by calling startActivity with the
+     * intent as its parameter.
+     *
+     * @param view
+     */
     public void startDisplayOffActivity(View view){
         Intent displayOffIntent = new Intent(".displayOffActivity");
         startActivity(displayOffIntent);
     }
 
-    // Increases the font size of the clock
+    /**
+     * Uses setTextSize to change the font size of each element in the
+     * layout individually. if the zoomFlag is true, it is in the zoom
+     * state, false is non-zoomed state.
+     *
+     * @param view
+     */
     public void zoomText(View view){
         if(zoomFlag == false){
             showtime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 85);
