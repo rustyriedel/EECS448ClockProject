@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="90sp"
+        android:textSize="30sp"
         android:text="@string/stopwatchTime"
         android:id="@+id/stopwatchTime"
         android:layout_marginTop="16dp"
@@ -18,18 +18,18 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="70sp"
+        android:textSize="25sp"
         android:text="@string/stopwatchStartButton"
         android:id="@+id/startButton"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:onClick="startClicked"/>
 
     <!-- Button for pausing the stopwatch -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="70sp"
+        android:textSize="25sp"
         android:text="@string/stopwatchPauseButton"
         android:id="@+id/pauseButton"
         android:layout_gravity="center_horizontal"
@@ -39,10 +39,26 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="70sp"
+        android:textSize="25sp"
         android:text="@string/stopwatchResetButton"
         android:id="@+id/resetButton"
         android:layout_gravity="center_horizontal"
         android:onClick="resetClicked"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="Zoom"
+        android:id="@+id/zoomTimerButton"
+        android:layout_gravity="center_horizontal"
+        android:onClick="zoomText"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="Display Off"
+        android:id="@+id/displayTimerButton"
+        android:layout_gravity="center_horizontal"
+        android:onClick="startDisplayOffActivity"/>
 
 </LinearLayout>
